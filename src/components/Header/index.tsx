@@ -8,37 +8,34 @@ import {
   Title,
 } from "./styles";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { Drawer } from "@mui/material";
 import { Navigations } from "./components/navigations";
+import { Reorder } from "@mui/icons-material";
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = (newOpen: boolean) => () => {
+  const toggleDrawer: any = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
   return (
     <BoxHeader>
       <ContainerHeader>
         <BoxNavigation>
-          {/* <Reorder /> */}
-          <ButtonNavigation onClick={toggleDrawer(true)}>|||</ButtonNavigation>
+          <ButtonNavigation onClick={toggleDrawer(true)}>
+            <Reorder />
+          </ButtonNavigation>
           <Title>All Gym</Title>
         </BoxNavigation>
-        <BoxPages>
+        {/* <BoxPages>
           <Link to="">Montar treino</Link>
-        </BoxPages>
+        </BoxPages> */}
       </ContainerHeader>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+        open={open}
+        onClose={toggleDrawer(false)}
+        PaperProps={{ style: { backgroundColor: "#4f4f4f" } }}
+      >
         <Navigations onClose={() => toggleDrawer(false)} />
       </Drawer>
     </BoxHeader>

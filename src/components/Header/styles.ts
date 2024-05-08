@@ -27,4 +27,12 @@ export const BoxNavigation = styled(Box)`
   align-items: center;
 `;
 
-export const ButtonNavigation = styled(Button)``;
+export const ButtonNavigation = styled(Button)`
+  color: #fff;
+  border: 0.5px solid gray;
+  border-radius: 5px;
+  min-width: 25px;
+  padding: 5px;
+
+  margin-right: 10px;
+`;

@@ -1,3 +1,4 @@
+import { FitnessCenter } from "@mui/icons-material";
 import {
   Drawer,
   Box,
@@ -5,9 +6,9 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   Divider,
 } from "@mui/material";
+import { ListItemText } from "./styles";
 
 interface TypeNavigations {
   onClose: any;
@@ -15,31 +16,29 @@ interface TypeNavigations {
 
 export function Navigations({ onClose }: TypeNavigations) {
   return (
-    <Box sx={{ width: 250 }} role="presentation" onClick={() => onClose(false)}>
+    <Box
+      sx={{ width: 350, color: "#FFF" }}
+      role="presentation"
+      onClick={() => onClose(false)}
+    >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <FitnessCenter sx={{ color: "#FFF" }} />
+            </ListItemIcon>
+            <ListItemText>Montar Treino</ListItemText>
+          </ListItemButton>
+        </ListItem>
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon></ListItemIcon>
+            <ListItemText>Tecnicas </ListItemText>
+          </ListItemButton>
+        </ListItem>
       </List>
     </Box>
   );
