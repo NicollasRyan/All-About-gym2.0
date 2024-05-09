@@ -15,6 +15,8 @@ export const ContainerHeader = styled(Container)`
 export const Title = styled(Typography)`
   font-size: 24px;
   font-weight: 700;
+
+  cursor: pointer;
 `;
 
 export const BoxPages = styled(Box)`

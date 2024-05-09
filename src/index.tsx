@@ -9,11 +9,13 @@ import {
 } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { Home } from "./pages/home";
+import { WeeklyWorkout } from "./pages/weeklyWorkout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />}>
       <Route path="/" element={<Home />} />
+      <Route path="/weekly-workout" element={<WeeklyWorkout />} />
     </Route>
   )
 );

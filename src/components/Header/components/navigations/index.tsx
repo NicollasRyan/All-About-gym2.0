@@ -9,12 +9,18 @@ import {
   Divider,
 } from "@mui/material";
 import { ListItemText } from "./styles";
+import { useNavigate } from "react-router";
 
 interface TypeNavigations {
   onClose: any;
 }
 
 export function Navigations({ onClose }: TypeNavigations) {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/weekly-workout");
+  };
+
   return (
     <Box
       sx={{ width: 350, color: "#FFF" }}
@@ -23,7 +29,7 @@ export function Navigations({ onClose }: TypeNavigations) {
     >
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={handleClick}>
             <ListItemIcon>
               <FitnessCenter sx={{ color: "#FFF" }} />
             </ListItemIcon>
