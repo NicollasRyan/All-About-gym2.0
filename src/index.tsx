@@ -10,12 +10,14 @@ import {
 import reportWebVitals from "./reportWebVitals";
 import { Home } from "./pages/home";
 import { WeeklyWorkout } from "./pages/weeklyWorkout";
+import { SundayWorkout } from "./pages/form/sundayWorkout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<App />}>
       <Route path="/" element={<Home />} />
       <Route path="/weekly-workout" element={<WeeklyWorkout />} />
+      <Route path="/sunday-workout" element={<SundayWorkout />} />
     </Route>
   )
 );
