@@ -12,155 +12,86 @@ import {
 import { Modal } from "@mui/material";
 
 type FunctioType = {
-  openChest: boolean;
+  openShoulder: boolean;
   handleClose: () => void;
   handleTraining: (data: any) => void;
 };
 
-export function Chest({ openChest, handleClose, handleTraining }: FunctioType) {
+export function Shoulder({
+  openShoulder,
+  handleClose,
+  handleTraining,
+}: FunctioType) {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data: any) => {
-    data.Chest = "Peito";
+    data.Shoulder = "Ombros";
     console.log(data, "<=");
     handleTraining(data);
-    handleClose();
   };
 
   return (
-    <Modal open={openChest} onClose={handleClose}>
+    <Modal open={openShoulder} onClose={handleClose}>
       <BoxModal>
         <TitleModal>Montar treino</TitleModal>
         <BoxSelect container spacing={2}>
           <GridItem item xs={6}>
             <Controller
-              name="BenchPress"
+              name="LateralRaise"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Supino Reto" : "")
+                      onChange(e.target.checked ? "Elevação Lateral" : "")
                     }
-                    checked={value === "Supino Reto"}
+                    checked={value === "Elevação Lateral"}
                   />
-                  <LabelTraning>Supino Reto ou na maquina</LabelTraning>
+                  <LabelTraning>Elevação Lateral</LabelTraning>
                 </>
               )}
             />
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="InclineBenchPress"
+              name="Development"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Supino Inclinado" : "")
+                      onChange(e.target.checked ? "Desenvolvimento" : "")
                     }
-                    checked={value === "Supino Inclinado"}
+                    checked={value === "Desenvolvimento"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Supino inclinado</LabelTraning>
+            <LabelTraning>Desenvolvimento</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="DeclineBenchPress"
+              name="FrontElevation"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Supino Declinado" : "")
+                      onChange(e.target.checked ? "Elevação Frontal" : "")
                     }
-                    checked={value === "Supino Declinado"}
+                    checked={value === "Elevação Frontal"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Supino Declinado</LabelTraning>
+            <LabelTraning>Elevação Frontal</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="HighPulleyCross"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) =>
-                      onChange(e.target.checked ? "Cross Polia Alta" : "")
-                    }
-                    checked={value === "Cross Polia Alta"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Cross Polia Alta</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="CrossMediaPulley"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) =>
-                      onChange(e.target.checked ? "Cross Polia Media" : "")
-                    }
-                    checked={value === "Cross Polia Media"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Cross Polia Media</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="CrossLowPulley"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) =>
-                      onChange(e.target.checked ? "Cross Polia Baixar" : "")
-                    }
-                    checked={value === "Cross Polia Baixar"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Cross Polia Baixar</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="Crucifix"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) =>
-                      onChange(e.target.checked ? "Crucifixo na Maquina" : "")
-                    }
-                    checked={value === "Crucifixo na Maquina"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Crucifixo na Maquina</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="LeaningCrucifix"
+              name="LateralElevationPulley"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
@@ -168,20 +99,55 @@ export function Chest({ openChest, handleClose, handleTraining }: FunctioType) {
                     color="secondary"
                     onChange={(e) =>
                       onChange(
-                        e.target.checked
-                          ? "Crucifixo inclinado com Halters"
-                          : ""
+                        e.target.checked ? "Elevação Lateral na Polia" : ""
                       )
                     }
-                    checked={value === "Crucifixo inclinado com Halters"}
+                    checked={value === "Elevação Lateral na Polia"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Crucifixo inclinado com Halters</LabelTraning>
+            <LabelTraning>Elevação Lateral na Polia</LabelTraning>
+          </GridItem>
+          <GridItem item xs={6}>
+            <Controller
+              name="FrontPulleyRaise"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <CheckTraning
+                    color="secondary"
+                    onChange={(e) =>
+                      onChange(
+                        e.target.checked ? "Elevação Frontal na Polia" : ""
+                      )
+                    }
+                    checked={value === "Elevação Frontal na Polia"}
+                  />
+                </>
+              )}
+            />
+            <LabelTraning>Elevação Frontal na Polia</LabelTraning>
+          </GridItem>
+          <GridItem item xs={6}>
+            <Controller
+              name="InvertedCrucifix"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <CheckTraning
+                    color="secondary"
+                    onChange={(e) =>
+                      onChange(e.target.checked ? "Cruxifixo Invertido" : "")
+                    }
+                    checked={value === "Cruxifixo Invertido"}
+                  />
+                </>
+              )}
+            />
+            <LabelTraning>Cruxifixo Invertido</LabelTraning>
           </GridItem>
         </BoxSelect>
-
         <BoxButtons>
           <ButtonModal onClick={handleSubmit(onSubmit)}>Enviar</ButtonModal>
           <ButtonModal onClick={handleClose}>Cancelar</ButtonModal>
