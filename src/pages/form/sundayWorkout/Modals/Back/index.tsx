@@ -8,7 +8,7 @@ import {
   GridItem,
   BoxButtons,
   ButtonModal,
-} from "./styles";
+} from "../styles";
 import { Modal } from "@mui/material";
 
 type FunctioType = {
@@ -21,15 +21,15 @@ export function Back({ openBack, handleClose, handleTraining }: FunctioType) {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data: any) => {
-    data.Back = "Costas";
     console.log(data, "<=");
     handleTraining(data);
+    handleClose();
   };
 
   return (
     <Modal open={openBack} onClose={handleClose}>
       <BoxModal>
-        <TitleModal>Montar treino</TitleModal>
+        <TitleModal>Treino de Costas</TitleModal>
         <BoxSelect container spacing={2}>
           <GridItem item xs={6}>
             <Controller
@@ -266,8 +266,12 @@ export function Back({ openBack, handleClose, handleTraining }: FunctioType) {
         </BoxSelect>
 
         <BoxButtons>
-          <ButtonModal onClick={handleSubmit(onSubmit)}>Enviar</ButtonModal>
-          <ButtonModal onClick={handleClose}>Cancelar</ButtonModal>
+          <ButtonModal onClick={handleSubmit(onSubmit)} active={true}>
+            Enviar
+          </ButtonModal>
+          <ButtonModal onClick={handleClose} active={false}>
+            Cancelar
+          </ButtonModal>
         </BoxButtons>
       </BoxModal>
     </Modal>

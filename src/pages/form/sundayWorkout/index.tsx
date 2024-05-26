@@ -1,5 +1,5 @@
 import { Container, Grid } from "@mui/material";
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   collection,
   doc,
@@ -7,8 +7,6 @@ import {
   setDoc,
   getDoc,
   updateDoc,
-  query,
-  where,
 } from "firebase/firestore";
 
 import {
@@ -20,6 +18,7 @@ import {
   Text,
   ButtonDelete,
 } from "./styles";
+
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";
 import { Shoulder } from "./Modals/Shoulder";
@@ -27,79 +26,24 @@ import { Biceps } from "./Modals/Biceps";
 import { Triceps } from "./Modals/Triceps";
 import { Leg } from "./Modals/Leg";
 import { db } from "../../../firebase";
-
-interface FormData {
-  [key: string]: any;
-}
-
-interface TypeTraining {
-  id?: string;
-  // costas
-  HighPull?: string;
-  SupinatedHighGripPulldown?: string;
-  TrianglePull?: string;
-  NeutralGripHighPull?: string;
-  InclineRow?: string;
-  RowingTriangleMachine?: string;
-  InclineLeverRow?: string;
-  RowingMachine?: string;
-  InclineRowSupinatedGrip?: string;
-  RowingSupinatedGripMachine?: string;
-  Saw?: string;
-  Pulldown?: string;
-  // biceps
-  DumbbellCurl?: string;
-  WBarCurl?: string;
-  HammerThread?: string;
-  InclineDumbbellCurl?: string;
-  PreacherBench?: string;
-  BenchPress?: string;
-  InclineBenchPress?: string;
-  DeclineBenchPress?: string;
-  HighPulleyCross?: string;
-  CrossMediaPulley?: string;
-  CrossLowPulley?: string;
-  Crucifix?: string;
-  LeaningCrucifix?: string;
-  // perna
-  ExtensionChair?: string;
-  FlexorChair?: string;
-  FlexingTable?: string;
-  LegPress?: string;
-  AbductorChair?: string;
-  AdductorChair?: string;
-  Bugaro?: string;
-  Squat?: string;
-  Hack?: string;
-  Stiff?: string;
-  Earth?: string;
-  Lunge?: string;
-  PelvicLift?: string;
-  // ombros
-  LateralRaise?: string;
-  Development?: string;
-  LateralElevationPulley?: string;
-  FrontElevation?: string;
-  FrontPulleyRaise?: string;
-  InvertedCrucifix?: string;
-  // triceps
-  TricepsBar?: string;
-  TricepsRope?: string;
-  French?: string;
-  TricepsForehead?: string;
-  TricepsBench?: string;
-}
+import { Rest } from "./Modals/Rest";
+import { handleDeleteByField, removeUndefinedFields } from "./Hooks";
+import { TypeTraining } from "../../../Hooks";
 
 export function SundayWorkout() {
-  const [training, setTraining] = React.useState<TypeTraining[]>([]);
-  const [addTrainig, setAddTrainig] = React.useState(false);
+  const [training, setTraining] = useState<TypeTraining[]>([]);
+  const [addTrainig, setAddTrainig] = useState(false);
 
-  const [openShoulder, setOpenShoulder] = React.useState(false);
-  const [openChest, setOpenChest] = React.useState(false);
-  const [openBack, setOpenBack] = React.useState(false);
-  const [openBiceps, setOpenBiceps] = React.useState(false);
-  const [openTriceps, setOpenTriceps] = React.useState(false);
-  const [openLeg, setOpenLeg] = React.useState(false);
+  const [openShoulder, setOpenShoulder] = useState(false);
+  const [openChest, setOpenChest] = useState(false);
+  const [openBack, setOpenBack] = useState(false);
+  const [openBiceps, setOpenBiceps] = useState(false);
+  const [openTriceps, setOpenTriceps] = useState(false);
+  const [openLeg, setOpenLeg] = useState(false);
+  const [openRest, setOpenRest] = useState(false);
+
+  const handleCloseRest = () => setOpenRest(false);
+  const handleOpenRest = () => setOpenRest(true);
 
   const handleOpenShoulder = () => setOpenShoulder(true);
   const handleCloseShoulder = () => setOpenShoulder(false);
@@ -136,24 +80,6 @@ export function SundayWorkout() {
     fetchAllDocuments();
   }, [training]);
 
-  const removeUndefinedFields = (obj: FormData) => {
-    const cleanedObj: FormData = {};
-    Object.keys(obj).forEach((key) => {
-      if (obj[key] !== undefined) {
-        cleanedObj[key] = obj[key];
-      }
-    });
-    return cleanedObj;
-  };
-
-  const handleMore = () => {
-    if (addTrainig === false) {
-      setAddTrainig(true);
-    } else {
-      setAddTrainig(false);
-    }
-  };
-
   const onSubmit = async (data: any) => {
     const documentId = "c79M5Hne9QjVAAHcD5Kq";
     const userForm = { ...data };
@@ -161,6 +87,8 @@ export function SundayWorkout() {
     const cleanedUserForm = removeUndefinedFields(userForm);
 
     const docRef = doc(db, "sunday_training", documentId);
+
+    setAddTrainig(false);
 
     try {
       const docSnap = await getDoc(docRef);
@@ -176,26 +104,11 @@ export function SundayWorkout() {
     }
   };
 
-  const handleDeleteByField = async (field: any, value: any) => {
-    try {
-      const q = query(
-        collection(db, "sunday_training"),
-        where(field, "==", value)
-      );
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        const docToDelete = querySnapshot.docs[0];
-        const docRef = doc(db, "sunday_training", docToDelete.id);
-        await updateDoc(docRef, {
-          [field]: "",
-        });
-        console.log("Field successfully deleted!");
-      } else {
-        console.log("No matching documents found.");
-      }
-    } catch (error) {
-      console.error("Error removing field: ", error);
+  const handleMore = () => {
+    if (addTrainig === false) {
+      setAddTrainig(true);
+    } else {
+      setAddTrainig(false);
     }
   };
 
@@ -204,6 +117,16 @@ export function SundayWorkout() {
       <TitleWorkout>Treino de Domingo</TitleWorkout>
       {training.map((workout) => (
         <BoxCard key={workout.id}>
+          {workout.rest && (
+            <CardTraining>
+              <Text>{workout.rest}</Text>
+              <ButtonDelete
+                onClick={() => handleDeleteByField("rest", workout.rest)}
+              >
+                Delatar
+              </ButtonDelete>
+            </CardTraining>
+          )}
           {/* Costas */}
           {workout.HighPull && (
             <CardTraining>
@@ -830,11 +753,13 @@ export function SundayWorkout() {
               </ButtonDelete>
             </CardTraining>
           )}
+          {!workout.rest && (
+            <ButtonMore onClick={handleMore}>
+              {addTrainig ? "Cancelar" : "Adiconar exercios"}
+            </ButtonMore>
+          )}
         </BoxCard>
       ))}
-      <ButtonMore onClick={handleMore}>
-        {addTrainig ? "Cancelar" : "Adiconar exercios"}
-      </ButtonMore>
 
       {addTrainig && (
         <Grid container spacing={2}>
@@ -856,6 +781,9 @@ export function SundayWorkout() {
 
           <Grid item xs={6}>
             <ButtonAdd onClick={handleOpenLeg}>Pernas</ButtonAdd>
+          </Grid>
+          <Grid item xs={6}>
+            <ButtonAdd onClick={handleOpenRest}>Descanço</ButtonAdd>
           </Grid>
         </Grid>
       )}
@@ -888,6 +816,12 @@ export function SundayWorkout() {
       <Leg
         openLeg={openLeg}
         handleClose={handleCloseLeg}
+        handleTraining={onSubmit}
+      />
+
+      <Rest
+        openRest={openRest}
+        handleClose={handleCloseRest}
         handleTraining={onSubmit}
       />
     </Container>

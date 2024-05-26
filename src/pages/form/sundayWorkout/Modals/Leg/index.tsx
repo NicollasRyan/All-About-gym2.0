@@ -8,7 +8,7 @@ import {
   GridItem,
   BoxButtons,
   ButtonModal,
-} from "./styles";
+} from "../styles";
 import { Modal } from "@mui/material";
 
 type FunctioType = {
@@ -21,9 +21,9 @@ export function Leg({ openLeg, handleClose, handleTraining }: FunctioType) {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data: any) => {
-    data.Leg = "Pernas";
     console.log(data, "<=");
     handleTraining(data);
+    handleClose();
   };
 
   return (
@@ -260,8 +260,12 @@ export function Leg({ openLeg, handleClose, handleTraining }: FunctioType) {
         </BoxSelect>
 
         <BoxButtons>
-          <ButtonModal onClick={handleSubmit(onSubmit)}>Enviar</ButtonModal>
-          <ButtonModal onClick={handleClose}>Cancelar</ButtonModal>
+          <ButtonModal onClick={handleSubmit(onSubmit)} active={true}>
+            Enviar
+          </ButtonModal>
+          <ButtonModal onClick={handleClose} active={false}>
+            Cancelar
+          </ButtonModal>
         </BoxButtons>
       </BoxModal>
     </Modal>

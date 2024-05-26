@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 import { Box, Typography, Grid, Checkbox, Button } from "@mui/material";
 
+type TypeButton = {
+  active: boolean;
+};
+
 export const BoxModal = styled(Box)`
   position: absolute;
   top: 50%;
@@ -16,7 +20,8 @@ export const BoxModal = styled(Box)`
 `;
 
 export const TitleModal = styled(Typography)`
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 700;
 
   border-bottom: 1px solid gray;
   padding-bottom: 15px;
@@ -31,7 +36,10 @@ export const GridItem = styled(Grid)`
   align-items: center;
 `;
 
-export const LabelTraning = styled(Typography)``;
+export const LabelTraning = styled(Typography)`
+  font-size: 16px;
+  font-weight: 500;
+`;
 
 export const CheckTraning = styled(Checkbox)`
   color: #e9e9e9;
@@ -42,4 +50,13 @@ export const BoxButtons = styled(Box)`
   border-top: 1px solid gray;
 `;
 
-export const ButtonModal = styled(Button)``;
+export const ButtonModal = styled(Button)<TypeButton>`
+  padding: 8px;
+  margin-right: 15px;
+  color: #fff;
+  background: ${(props) => (props.active ? "#31bb00" : "#da0008")};
+
+  :hover {
+    background: ${(props) => (props.active ? "#1e7400" : "#890005")};
+  }
+`;
