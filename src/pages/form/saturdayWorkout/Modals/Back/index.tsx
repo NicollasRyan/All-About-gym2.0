@@ -12,12 +12,12 @@ import {
 import { Modal } from "@mui/material";
 
 type FunctioType = {
-  openLeg: boolean;
+  openBack: boolean;
   handleClose: () => void;
   handleTraining: (data: any) => void;
 };
 
-export function Leg({ openLeg, handleClose, handleTraining }: FunctioType) {
+export function Back({ openBack, handleClose, handleTraining }: FunctioType) {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data: any) => {
@@ -27,235 +27,241 @@ export function Leg({ openLeg, handleClose, handleTraining }: FunctioType) {
   };
 
   return (
-    <Modal open={openLeg} onClose={handleClose}>
+    <Modal open={openBack} onClose={handleClose}>
       <BoxModal>
-        <TitleModal>Treino de Perna</TitleModal>
+        <TitleModal>Treino de Costas</TitleModal>
         <BoxSelect container spacing={2}>
           <GridItem item xs={6}>
             <Controller
-              name="ExtensionChair"
+              name="HighPull"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Cadeira Extension" : "")
+                      onChange(e.target.checked ? "Puxada Alta" : "")
                     }
-                    checked={value === "Cadeira Extension"}
+                    checked={value === "Puxada Alta"}
                   />
-                  <LabelTraning>Cadeira Extension</LabelTraning>
+                  <LabelTraning>Puxada Alta</LabelTraning>
                 </>
               )}
             />
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="FlexorChair"
+              name="SupinatedHighGripPulldown"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Cadeira Flexora" : "")
+                      onChange(
+                        e.target.checked ? "Puxada Alta Pegada Supinada" : ""
+                      )
                     }
-                    checked={value === "Cadeira Flexora"}
+                    checked={value === "Puxada Alta Pegada Supinada"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Cadeira Flexora</LabelTraning>
+            <LabelTraning>Puxada Alta Pegada Supinada</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="FlexingTable"
+              name="TrianglePull"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Mesa Flexora" : "")
+                      onChange(e.target.checked ? "Puxada com Triangulo" : "")
                     }
-                    checked={value === "Mesa Flexora"}
+                    checked={value === "Puxada com Triangulo"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Mesa Flexora</LabelTraning>
+            <LabelTraning>Puxada com Triangulo</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="LegPress"
+              name="NeutralGripHighPull"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Leg Press" : "")
+                      onChange(
+                        e.target.checked ? "Puxada Alta Pegada Neutra" : ""
+                      )
                     }
-                    checked={value === "Leg Press"}
+                    checked={value === "Puxada Alta Pegada Neutra"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Leg Press</LabelTraning>
+            <LabelTraning>Puxada Alta Pegada Neutra</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="AbductorChair"
+              name="InclineRow"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Cadeira Abdutora" : "")
+                      onChange(e.target.checked ? "Remada Inclinada" : "")
                     }
-                    checked={value === "Cadeira Abdutora"}
+                    checked={value === "Remada Inclinada"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Cadeira Abdutora</LabelTraning>
+            <LabelTraning>Remada Inclinada</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="AdductorChair"
+              name="RowingTriangleMachine"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Cadeira Adutora" : "")
+                      onChange(
+                        e.target.checked
+                          ? "Remada com Triangulo na Maquina"
+                          : ""
+                      )
                     }
-                    checked={value === "Cadeira Adutora"}
+                    checked={value === "Remada com Triangulo na Maquina"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Cadeira Adutora</LabelTraning>
+            <LabelTraning>Remada com Triangulo na Maquina</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="Bugaro"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) => onChange(e.target.checked ? "Bugaro" : "")}
-                    checked={value === "Bugaro"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Bugaro</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="Squat"
+              name="InclineLeverRow"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Agachamento" : "")
+                      onChange(e.target.checked ? "Remada Cavalinho" : "")
                     }
-                    checked={value === "Agachamento"}
+                    checked={value === "Remada Cavalinho"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Agachamento</LabelTraning>
+            <LabelTraning>Remada Cavalinho</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="Hack"
+              name="RowingMachine"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Agachamento Hack" : "")
+                      onChange(e.target.checked ? "Remada na Maquina" : "")
                     }
-                    checked={value === "Agachamento Hack"}
+                    checked={value === "Remada na Maquina"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Agachamento</LabelTraning>
+            <LabelTraning>Remada na Maquina</LabelTraning>
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="Stiff"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) => onChange(e.target.checked ? "Stiff" : "")}
-                    checked={value === "Stiff"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Stiff</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="Earth"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) => onChange(e.target.checked ? "Terra" : "")}
-                    checked={value === "Terra"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Terra</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="Lunge"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) => onChange(e.target.checked ? "Afundo" : "")}
-                    checked={value === "Afundo"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Afundo</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
-              name="PelvicLift"
+              name="InclineRowSupinatedGrip"
               control={control}
               render={({ field: { onChange, value } }) => (
                 <>
                   <CheckTraning
                     color="secondary"
                     onChange={(e) =>
-                      onChange(e.target.checked ? "Elevação Pelvica" : "")
+                      onChange(
+                        e.target.checked
+                          ? "Remada Inclinada Pegada Supinada"
+                          : ""
+                      )
                     }
-                    checked={value === "Elevação Pelvica"}
+                    checked={value === "Remada Inclinada Pegada Supinada"}
                   />
                 </>
               )}
             />
-            <LabelTraning>Elevação Pelvica</LabelTraning>
+            <LabelTraning>Remada Inclinada Pegada Supinada</LabelTraning>
+          </GridItem>
+          <GridItem item xs={6}>
+            <Controller
+              name="RowingSupinatedGripMachine"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <CheckTraning
+                    color="secondary"
+                    onChange={(e) =>
+                      onChange(
+                        e.target.checked
+                          ? "Remada na Maquina Pegada Supinada"
+                          : ""
+                      )
+                    }
+                    checked={value === "Remada na Maquina Pegada Supinada"}
+                  />
+                </>
+              )}
+            />
+            <LabelTraning>Remada na Maquina Pegada Supinada</LabelTraning>
+          </GridItem>
+          <GridItem item xs={6}>
+            <Controller
+              name="Saw"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <CheckTraning
+                    color="secondary"
+                    onChange={(e) =>
+                      onChange(e.target.checked ? "Serrote" : "")
+                    }
+                    checked={value === "Serrote"}
+                  />
+                </>
+              )}
+            />
+            <LabelTraning>Serrote</LabelTraning>
+          </GridItem>
+          <GridItem item xs={6}>
+            <Controller
+              name="Pulldown"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <CheckTraning
+                    color="secondary"
+                    onChange={(e) =>
+                      onChange(e.target.checked ? "Pulldown" : "")
+                    }
+                    checked={value === "Pulldown"}
+                  />
+                </>
+              )}
+            />
+            <LabelTraning>Pulldown</LabelTraning>
           </GridItem>
         </BoxSelect>
 

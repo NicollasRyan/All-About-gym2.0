@@ -8,71 +8,30 @@ import { db } from "../../firebase";
 import { TypeTraining, workoutSunday } from "../../Hooks";
 
 export function WeeklyWorkout() {
-  const [trainingSunday, setTrainingSunday] = useState<TypeTraining[]>([]);
-
-  useEffect(() => {
-    const fetchAllDocuments = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "sunday_training"));
-        const trainingData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        console.log("<=", trainingData);
-        setTrainingSunday(trainingData);
-      } catch (error) {
-        console.error("Erro ao obter documento:", error);
-      }
-    };
-
-    fetchAllDocuments();
-  }, []);
-
-  const sunday = workoutSunday(trainingSunday);
-
   return (
     <Container>
-      <TitleWeek>
-        {trainingSunday && trainingSunday.length >= 0
-          ? "Monte seu treino semanal"
-          : "Treino da semana"}
-      </TitleWeek>
+      <TitleWeek>Treino Semanal</TitleWeek>
       <ContainerWorkout container spacing={2}>
         <Grid item xs={6}>
-          <CardWeek day={"Domingo"} link={"sunday-workout"} training={sunday} />
+          <CardWeek day={"Domingo"} link={"sunday-workout"} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek
-            day={"Segunda-feira"}
-            link={"monday-workout"}
-            training={""}
-          />
+          <CardWeek day={"Segunda-feira"} link={"monday-workout"} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek
-            day={"Terça-feira"}
-            link={"tuesday-workout"}
-            training={""}
-          />
+          <CardWeek day={"Terça-feira"} link={"tuesday-workout"} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek
-            day={"Quarta-feira"}
-            link={"wednesday-workout"}
-            training={""}
-          />
+          <CardWeek day={"Quarta-feira"} link={"wednesday-workout"} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek
-            day={"Quinta-feira"}
-            link={"thursday-workout"}
-            training={""}
-          />
+          <CardWeek day={"Quinta-feira"} link={"thursday-workout"} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek day={"Sexta-feira"} link={"friday-workout"} training={""} />
+          <CardWeek day={"Sexta-feira"} link={"friday-workout"} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek day={"Sabado"} link={"saturday-workout"} training={""} />
+          <CardWeek day={"Sábado"} link={"saturday-workout"} />
         </Grid>
       </ContainerWorkout>
     </Container>

@@ -30,7 +30,7 @@ import { Rest } from "./Modals/Rest";
 import { handleDeleteByField, removeUndefinedFields } from "./Hooks";
 import { TypeTraining } from "../../../Hooks";
 
-export function SundayWorkout() {
+export function FridayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
   const [addTrainig, setAddTrainig] = useState(false);
 
@@ -66,7 +66,7 @@ export function SundayWorkout() {
   useEffect(() => {
     const fetchAllDocuments = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "sunday_training"));
+        const querySnapshot = await getDocs(collection(db, "friday_training"));
         const trainingData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
@@ -81,12 +81,12 @@ export function SundayWorkout() {
   }, [training]);
 
   const onSubmit = async (data: any) => {
-    const documentId = "c79M5Hne9QjVAAHcD5Kq";
+    const documentId = "iPDfYdFI8OMVUzJJqJE8";
     const userForm = { ...data };
 
     const cleanedUserForm = removeUndefinedFields(userForm);
 
-    const docRef = doc(db, "sunday_training", documentId);
+    const docRef = doc(db, "friday_training", documentId);
 
     setAddTrainig(false);
 
@@ -114,7 +114,7 @@ export function SundayWorkout() {
 
   return (
     <Container>
-      <TitleWorkout>Treino de Domingo</TitleWorkout>
+      <TitleWorkout>Treino de Sexta-feira</TitleWorkout>
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           {workout.rest && (

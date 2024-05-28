@@ -11,6 +11,12 @@ import reportWebVitals from "./reportWebVitals";
 import { Home } from "./pages/home";
 import { WeeklyWorkout } from "./pages/weeklyWorkout";
 import { SundayWorkout } from "./pages/form/sundayWorkout";
+import { MondayWorkout } from "./pages/form/mondayWorkout";
+import { TuesdayWorkout } from "./pages/form/tuesdayWorkout";
+import { WednesdayWorkout } from "./pages/form/wednesdayWorkout";
+import { ThursdayWorkout } from "./pages/form/thursdayWorkout";
+import { FridayWorkout } from "./pages/form/fridayWorkout";
+import { SaturdayWorkout } from "./pages/form/saturdayWorkout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +24,12 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="/weekly-workout" element={<WeeklyWorkout />} />
       <Route path="/sunday-workout" element={<SundayWorkout />} />
+      <Route path="/monday-workout" element={<MondayWorkout />} />
+      <Route path="/tuesday-workout" element={<TuesdayWorkout />} />
+      <Route path="/wednesday-workout" element={<WednesdayWorkout />} />
+      <Route path="/thursday-workout" element={<ThursdayWorkout />} />
+      <Route path="/friday-workout" element={<FridayWorkout />} />
+      <Route path="/saturday-workout" element={<SaturdayWorkout />} />
     </Route>
   )
 );

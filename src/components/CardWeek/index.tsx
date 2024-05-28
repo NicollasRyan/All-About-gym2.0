@@ -9,10 +9,9 @@ import { TypeTraining, workoutSunday } from "../../Hooks";
 interface CardType {
   day: string;
   link: string;
-  training: string;
 }
 
-export function CardWeek({ day, link, training }: CardType) {
+export function CardWeek({ day, link }: CardType) {
   const [workout, setWorkout] = useState<TypeTraining[]>([]);
   const navigate = useNavigate();
 
@@ -23,13 +22,25 @@ export function CardWeek({ day, link, training }: CardType) {
   const weekTraining = (day: string) => {
     if (day === "Domingo") {
       return workoutSunday(workout);
+    } else if (day === "Segunda-feira") {
+      return workoutSunday(workout);
+    } else if (day === "Terça-feira") {
+      return workoutSunday(workout);
+    } else if (day === "Quarta-feira") {
+      return workoutSunday(workout);
+    } else if (day === "Quinta-feira") {
+      return workoutSunday(workout);
+    } else if (day === "Sexta-feira") {
+      return workoutSunday(workout);
+    } else if (day === "Sábado") {
+      return workoutSunday(workout);
     }
   };
 
   useEffect(() => {
-    const fetchAllDocuments = async () => {
+    const fetchAllDocuments = async (collectionName: string) => {
       try {
-        const querySnapshot = await getDocs(collection(db, "sunday_training"));
+        const querySnapshot = await getDocs(collection(db, collectionName));
         const trainingData = querySnapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
@@ -40,14 +51,28 @@ export function CardWeek({ day, link, training }: CardType) {
       }
     };
 
-    fetchAllDocuments();
-  }, []);
+    if (day === "Domingo") {
+      fetchAllDocuments("sunday_training");
+    } else if (day === "Segunda-feira") {
+      fetchAllDocuments("monday_training");
+    } else if (day === "Terça-feira") {
+      fetchAllDocuments("tuesday_training");
+    } else if (day === "Quarta-feira") {
+      fetchAllDocuments("wednesday_training");
+    } else if (day === "Quinta-feira") {
+      fetchAllDocuments("thursday_training");
+    } else if (day === "Sexta-feira") {
+      fetchAllDocuments("friday_training");
+    } else if (day === "Sábado") {
+      fetchAllDocuments("saturday_training");
+    }
+  }, [day]);
 
   return (
     <CardContainer onClick={handleWorkout}>
       <CardContent>
         <TitleCard>{day}</TitleCard>
-        <Training>{weekTraining(day) || training}</Training>
+        <Training>{weekTraining(day)}</Training>
       </CardContent>
     </CardContainer>
   );

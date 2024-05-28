@@ -29,11 +29,7 @@ export function Home() {
           <ImgIcon src={iconGym} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek
-            day={nameWeekDay}
-            link={"sunday-workout"}
-            training={"Costas"}
-          />
+          <CardWeek day={nameWeekDay} link={"sunday-workout"} />
         </Grid>
       </Grid>
     </Container>
