@@ -19,17 +19,51 @@ export function Home() {
 
   const nameWeekDay = WeekDay[dayOfWeek];
 
+  const getGreetingMessage = (): string => {
+    const currentHour = new Date().getHours();
+
+    if (currentHour >= 5 && currentHour < 12) {
+      return "Bom Dia⛅";
+    } else if (currentHour >= 12 && currentHour < 18) {
+      return "Boa Tarde🌞";
+    } else {
+      return "Boa Noite🌘";
+    }
+  };
+
+  const linkName = () => {
+    if (nameWeekDay === "Domingo") {
+      return "sunday-workout";
+    } else if (nameWeekDay === "Segunda-feira") {
+      return "monday-workout";
+    } else if (nameWeekDay === "Terça-feira") {
+      return "tuesday-workout";
+    } else if (nameWeekDay === "Quarta-feira") {
+      return "wednesday-workout";
+    } else if (nameWeekDay === "Quinta-feira") {
+      return "thursday-workout";
+    } else if (nameWeekDay === "Sexta-feira") {
+      return "friday-workout";
+    } else if (nameWeekDay === "Sábado") {
+      return "saturday-workout";
+    }
+  };
+
+  const greetingMessage = getGreetingMessage();
+
+  const linkMessage = linkName();
+
   return (
     <Container>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <TitleHome>BEM VINDO! 💪👋</TitleHome>
+          <TitleHome>{greetingMessage}</TitleHome>
         </Grid>
         <Grid item xs={6}>
           <ImgIcon src={iconGym} />
         </Grid>
         <Grid item xs={6}>
-          <CardWeek day={nameWeekDay} link={"sunday-workout"} />
+          <CardWeek day={nameWeekDay} link={linkMessage} />
         </Grid>
       </Grid>
     </Container>

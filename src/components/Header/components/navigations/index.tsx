@@ -1,4 +1,4 @@
-import { FitnessCenter } from "@mui/icons-material";
+import { FitnessCenter, Home } from "@mui/icons-material";
 import {
   Drawer,
   Box,
@@ -17,9 +17,6 @@ interface TypeNavigations {
 
 export function Navigations({ onClose }: TypeNavigations) {
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate("/weekly-workout");
-  };
 
   return (
     <Box
@@ -29,23 +26,27 @@ export function Navigations({ onClose }: TypeNavigations) {
     >
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={handleClick}>
+          <ListItemButton onClick={() => navigate("/")}>
             <ListItemIcon>
-              <FitnessCenter sx={{ color: "#FFF" }} />
+              <Home sx={{ color: "#FFF" }} />
             </ListItemIcon>
-            <ListItemText>Montar Treino</ListItemText>
+            <ListItemText>home</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>
       <Divider />
+
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon></ListItemIcon>
-            <ListItemText>Tecnicas </ListItemText>
+          <ListItemButton onClick={() => navigate("/weekly-workout")}>
+            <ListItemIcon>
+              <FitnessCenter sx={{ color: "#FFF" }} />
+            </ListItemIcon>
+            <ListItemText>Treino</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>
+      <Divider />
     </Box>
   );
 }

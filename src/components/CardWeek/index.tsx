@@ -8,7 +8,7 @@ import { TypeTraining, workoutSunday } from "../../Hooks";
 
 interface CardType {
   day: string;
-  link: string;
+  link: any;
 }
 
 export function CardWeek({ day, link }: CardType) {

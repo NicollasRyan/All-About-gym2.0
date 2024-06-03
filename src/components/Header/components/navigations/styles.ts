@@ -8,6 +8,10 @@ export const BoxNavigation = styled(Box)`
   }
 `;
 
+export const ListItem = styled(Box)`
+  border-bottom: 1px solid gray;
+`;
+
 export const ListItemText = styled(Typography)`
   color: #fff;
 `;

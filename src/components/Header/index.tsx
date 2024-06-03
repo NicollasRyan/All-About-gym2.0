@@ -33,9 +33,6 @@ export function Header() {
           </ButtonNavigation>
           <Title onClick={handleHome}>All Gym</Title>
         </BoxNavigation>
-        {/* <BoxPages>
-          <Link to="">Montar treino</Link>
-        </BoxPages> */}
       </ContainerHeader>
       <Drawer
         open={open}
