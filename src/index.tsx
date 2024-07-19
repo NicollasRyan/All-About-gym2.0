@@ -17,6 +17,8 @@ import { WednesdayWorkout } from "./pages/form/wednesdayWorkout";
 import { ThursdayWorkout } from "./pages/form/thursdayWorkout";
 import { FridayWorkout } from "./pages/form/fridayWorkout";
 import { SaturdayWorkout } from "./pages/form/saturdayWorkout";
+import { MuscularMass } from "./pages/KnowMore/muscularMass";
+import { WeightLoss } from "./pages/KnowMore/WeightLoss";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
       <Route path="/thursday-workout" element={<ThursdayWorkout />} />
       <Route path="/friday-workout" element={<FridayWorkout />} />
       <Route path="/saturday-workout" element={<SaturdayWorkout />} />
+      <Route path="/know-more/muscular-mass" element={<MuscularMass />} />
+      <Route path="/know-more/weight-loss" element={<WeightLoss />} />
     </Route>
   )
 );

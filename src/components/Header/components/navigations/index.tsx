@@ -7,6 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   Divider,
+  Typography,
 } from "@mui/material";
 import { ListItemText } from "./styles";
 import { useNavigate } from "react-router";
@@ -43,6 +44,33 @@ export function Navigations({ onClose }: TypeNavigations) {
               <FitnessCenter sx={{ color: "#FFF" }} />
             </ListItemIcon>
             <ListItemText>Treino</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+
+      <List>Saiba mais sobre:</List>
+
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate("/know-more/muscular-mass")}>
+            <ListItemIcon>
+              <Typography sx={{ color: "#FFF", fontSize: "20px" }}>💪</Typography>
+            </ListItemIcon>
+            <ListItemText>Ganho de masssa muscular</ListItemText>
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate("/know-more/weight-loss")}>
+            <ListItemIcon>
+              <Typography sx={{ color: "#FFF", fontSize: "20px" }}>💪</Typography>
+            </ListItemIcon>
+            <ListItemText>Perca de peso</ListItemText>
           </ListItemButton>
         </ListItem>
       </List>

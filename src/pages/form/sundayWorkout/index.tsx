@@ -78,7 +78,7 @@ export function SundayWorkout() {
     };
 
     fetchAllDocuments();
-  }, [training]);
+  }, []);
 
   const onSubmit = async (data: any) => {
     const documentId = "c79M5Hne9QjVAAHcD5Kq";

@@ -80,7 +80,7 @@ export function ThursdayWorkout() {
     };
 
     fetchAllDocuments();
-  }, [training]);
+  }, []);
 
   const onSubmit = async (data: any) => {
     const documentId = "1CZNFozAFimJGcVPsH6U";
