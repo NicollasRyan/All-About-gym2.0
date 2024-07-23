@@ -32,6 +32,25 @@ export const CardTraining = styled(Box)`
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
 `;
 
+export const CardRest = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 302px;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  border-radius: 8px;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+  background: #262626;
+
+  padding: 25px 10px;
+
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+`;
+
 export const Text = styled(Typography)``;
 
 export const ButtonDelete = styled(Button)`

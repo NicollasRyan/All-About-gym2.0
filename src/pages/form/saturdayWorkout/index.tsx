@@ -17,6 +17,7 @@ import {
   TitleWorkout,
   Text,
   ButtonDelete,
+  CardRest,
 } from "./styles";
 
 import { Chest } from "./Modals/Chest";
@@ -120,14 +121,14 @@ export function SaturdayWorkout() {
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           {workout.rest && (
-            <CardTraining>
+            <CardRest>
               <Text>{workout.rest}</Text>
               <ButtonDelete
                 onClick={() => handleDeleteByField("rest", workout.rest)}
               >
                 Delatar
               </ButtonDelete>
-            </CardTraining>
+            </CardRest>
           )}
           {/* Costas */}
           {workout.HighPull && (

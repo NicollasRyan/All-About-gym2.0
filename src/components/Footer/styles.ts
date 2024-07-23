@@ -8,32 +8,26 @@ export const BoxFooter = styled(Box)`
   color: #fff;
 `;
 
+export const TitleLogo = styled(Typography)`  
+  margin-top: 25px;
+  font-size: 24px;
+  font-weight: 700;
+
+  cursor: pointer;
+`;
 
 export const TitleFooter = styled(Typography)`
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-  font-weight: 600;
-`;
-
-export const FormFooter = styled.form`
-  display: flex;
-  flex-direction: column;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
 `
 
-export const InputFooter = styled(TextField)`
-  background: #FFF;
+export const TextFooter = styled(Typography)`
+font-size: 16px;
+`
 
-  margin: 25px 0 15px;
-  border: none;
-  width: 400px;
-`;
-
-export const Error = styled(Typography)`
-color: red;
-
-`;
-
-export const ButtonSubmmit = styled(Button)`
-  width: 200px;
+export const BoxText = styled(Box)`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 `;

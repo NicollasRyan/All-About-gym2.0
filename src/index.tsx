@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
+  Routes,
 } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { Home } from "./pages/home";
@@ -19,31 +21,62 @@ import { FridayWorkout } from "./pages/form/fridayWorkout";
 import { SaturdayWorkout } from "./pages/form/saturdayWorkout";
 import { MuscularMass } from "./pages/KnowMore/muscularMass";
 import { WeightLoss } from "./pages/KnowMore/WeightLoss";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route element={<App />}>
-      <Route path="/" element={<Home />} />
-      <Route path="/weekly-workout" element={<WeeklyWorkout />} />
-      <Route path="/sunday-workout" element={<SundayWorkout />} />
-      <Route path="/monday-workout" element={<MondayWorkout />} />
-      <Route path="/tuesday-workout" element={<TuesdayWorkout />} />
-      <Route path="/wednesday-workout" element={<WednesdayWorkout />} />
-      <Route path="/thursday-workout" element={<ThursdayWorkout />} />
-      <Route path="/friday-workout" element={<FridayWorkout />} />
-      <Route path="/saturday-workout" element={<SaturdayWorkout />} />
-      <Route path="/know-more/muscular-mass" element={<MuscularMass />} />
-      <Route path="/know-more/weight-loss" element={<WeightLoss />} />
-    </Route>
-  )
-);
+
+const Main = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+
+  if (loading) {
+    return <div>Loading...</div>; // Exibe uma mensagem de carregamento enquanto verifica o estado de autenticação
+  }
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route element={<App />}>
+          <Route path="/" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+          <Route path="*" element={isAuthenticated ? <Home /> : <Navigate to="/login" />} />
+          <Route path="/weekly-workout" element={isAuthenticated ? <WeeklyWorkout /> : <Navigate to="/login" />} />
+          <Route path="/sunday-workout" element={isAuthenticated ? <SundayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/monday-workout" element={isAuthenticated ? <MondayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/tuesday-workout" element={isAuthenticated ? <TuesdayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/wednesday-workout" element={isAuthenticated ? <WednesdayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/thursday-workout" element={isAuthenticated ? <ThursdayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/friday-workout" element={isAuthenticated ? <FridayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/saturday-workout" element={isAuthenticated ? <SaturdayWorkout /> : <Navigate to="/login" />} />
+          <Route path="/know-more/muscular-mass" element={isAuthenticated ? <MuscularMass /> : <Navigate to="/login" />} />
+          <Route path="/know-more/weight-loss" element={isAuthenticated ? <WeightLoss /> : <Navigate to="/login" />} />
+        </Route>
+      </>
+    )
+  );
+
+  return <RouterProvider router={router} />;
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Main />
   </React.StrictMode>
 );
 
