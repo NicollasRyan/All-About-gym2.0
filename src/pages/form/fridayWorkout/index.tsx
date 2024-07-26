@@ -1,9 +1,7 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
-  collection,
   doc,
-  getDocs,
   setDoc,
   getDoc,
   updateDoc,
@@ -26,10 +24,9 @@ import { Shoulder } from "./Modals/Shoulder";
 import { Biceps } from "./Modals/Biceps";
 import { Triceps } from "./Modals/Triceps";
 import { Leg } from "./Modals/Leg";
-import { db } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import { Rest } from "./Modals/Rest";
-import { handleDeleteByField, removeUndefinedFields } from "./Hooks";
-import { TypeTraining } from "../../../Hooks";
+import { handleDeleteByField, removeUndefinedFields, TypeTraining } from "../../../Hooks";
 
 export function FridayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
@@ -64,30 +61,61 @@ export function FridayWorkout() {
   const handleOpenLeg = () => setOpenLeg(true);
   const handleCloseLeg = () => setOpenLeg(false);
 
-  useEffect(() => {
-    const fetchAllDocuments = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "friday_training"));
-        const trainingData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        // console.log("<=", trainingData);
-        setTraining(trainingData);
-      } catch (error) {
-        console.error("Erro ao obter documento:", error);
-      }
-    };
+  const trainingId = 'friday_training';
 
-    fetchAllDocuments();
-  }, [training]);
+  const fetchTrainingDocuments = async () => {
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("Usuário não autenticado");
+      return;
+    }
+
+    try {
+      const docRef = doc(db, "user", user.uid, "trainings", trainingId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const trainingData = { id: docSnap.id, ...docSnap.data() };
+        setTraining([trainingData]);
+      } else {
+        console.log("Nenhum documento encontrado.");
+      }
+    } catch (error) {
+      console.error("Erro ao obter documento:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTrainingDocuments();
+  }, [trainingId]);
+
+  const handleDelete = async (field: string, value: string) => {
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("Usuário não autenticado");
+      return;
+    }
+
+    try {
+      await handleDeleteByField(user.uid, trainingId, field, value);
+      fetchTrainingDocuments();
+    } catch (error) {
+      console.error("Erro ao deletar campo:", error);
+    }
+  };
 
   const onSubmit = async (data: any) => {
-    const documentId = "iPDfYdFI8OMVUzJJqJE8";
-    const userForm = { ...data };
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("Usuário não autenticado");
+      return;
+    }
 
+    const userUid = user.uid;
+    const userForm = { ...data };
     const cleanedUserForm = removeUndefinedFields(userForm);
 
-    const docRef = doc(db, "friday_training", documentId);
+    const docRef = doc(db, "user", userUid, "trainings", trainingId);
 
     setAddTrainig(false);
 
@@ -95,14 +123,15 @@ export function FridayWorkout() {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         await updateDoc(docRef, cleanedUserForm);
-        console.log();
+        fetchTrainingDocuments();
       } else {
         await setDoc(docRef, cleanedUserForm);
-        console.log("Novo documento criado com os dados no Firestore");
+        console.log("Novo treino criado com sucesso!");
       }
     } catch (error) {
       console.error("Erro ao salvar dados:", error);
     }
+
   };
 
   const handleMore = () => {
@@ -115,14 +144,18 @@ export function FridayWorkout() {
 
   return (
     <Container>
-      <TitleWorkout>Treino de Sexta-feira</TitleWorkout>
+      <TitleWorkout>Treino de Segunda</TitleWorkout>
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           {workout.rest && (
             <CardRest>
               <Text>{workout.rest}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("rest", workout.rest)}
+                onClick={() => {
+                  if (workout.rest) {
+                    handleDelete("rest", workout.rest);
+                  }
+                }}
               >
                 Delatar
               </ButtonDelete>
@@ -133,159 +166,178 @@ export function FridayWorkout() {
             <CardTraining>
               <Text>{workout.HighPull}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("HighPull", workout.HighPull)
-                }
+                onClick={() => {
+                  if (workout.HighPull) {
+                    handleDelete("HighPull", workout.HighPull);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.SupinatedHighGripPulldown && (
             <CardTraining>
               <Text>{workout.SupinatedHighGripPulldown}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "SupinatedHighGripPulldown",
-                    workout.SupinatedHighGripPulldown
-                  )
-                }
+                onClick={() => {
+                  if (workout.SupinatedHighGripPulldown) {
+                    handleDelete("SupinatedHighGripPulldown", workout.SupinatedHighGripPulldown);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.TrianglePull && (
             <CardTraining>
               <Text>{workout.TrianglePull}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("TrianglePull", workout.TrianglePull)
-                }
+                onClick={() => {
+                  if (workout.TrianglePull) {
+                    handleDelete("TrianglePull", workout.TrianglePull);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.NeutralGripHighPull && (
             <CardTraining>
               <Text>{workout.NeutralGripHighPull}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "NeutralGripHighPull",
-                    workout.NeutralGripHighPull
-                  )
-                }
+                onClick={() => {
+                  if (workout.NeutralGripHighPull) {
+                    handleDelete("NeutralGripHighPull", workout.NeutralGripHighPull);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.InclineRow && (
             <CardTraining>
               <Text>{workout.InclineRow}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("InclineRow", workout.InclineRow)
-                }
+                onClick={() => {
+                  if (workout.InclineRow) {
+                    handleDelete("InclineRow", workout.InclineRow);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.RowingTriangleMachine && (
             <CardTraining>
               <Text>{workout.RowingTriangleMachine}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "RowingTriangleMachine",
-                    workout.RowingTriangleMachine
-                  )
-                }
+                onClick={() => {
+                  if (workout.RowingTriangleMachine) {
+                    handleDelete("RowingTriangleMachine", workout.RowingTriangleMachine);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.InclineLeverRow && (
             <CardTraining>
               <Text>{workout.InclineLeverRow}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "InclineLeverRow",
-                    workout.InclineLeverRow
-                  )
-                }
+                onClick={() => {
+                  if (workout.InclineLeverRow) {
+                    handleDelete("InclineLeverRow", workout.InclineLeverRow);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.RowingMachine && (
             <CardTraining>
               <Text>{workout.RowingMachine}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("RowingMachine", workout.RowingMachine)
-                }
+                onClick={() => {
+                  if (workout.RowingMachine) {
+                    handleDelete("RowingMachine", workout.RowingMachine);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.InclineRowSupinatedGrip && (
             <CardTraining>
               <Text>{workout.InclineRowSupinatedGrip}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "InclineRowSupinatedGrip",
-                    workout.InclineRowSupinatedGrip
-                  )
-                }
+                onClick={() => {
+                  if (workout.InclineRowSupinatedGrip) {
+                    handleDelete("InclineRowSupinatedGrip", workout.InclineRowSupinatedGrip);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.RowingSupinatedGripMachine && (
             <CardTraining>
               <Text>{workout.RowingSupinatedGripMachine}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "RowingSupinatedGripMachine",
-                    workout.RowingSupinatedGripMachine
-                  )
-                }
+                onClick={() => {
+                  if (workout.RowingSupinatedGripMachine) {
+                    handleDelete("RowingSupinatedGripMachine", workout.RowingSupinatedGripMachine);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Saw && (
             <CardTraining>
               <Text>{workout.Saw}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Saw", workout.Saw)}
+                onClick={() => {
+                  if (workout.Saw) {
+                    handleDelete("Saw", workout.Saw);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Pulldown && (
             <CardTraining>
               <Text>{workout.Pulldown}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("Pulldown", workout.Pulldown)
-                }
+                onClick={() => {
+                  if (workout.Pulldown) {
+                    handleDelete("Pulldown", workout.Pulldown);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
@@ -294,463 +346,569 @@ export function FridayWorkout() {
             <CardTraining>
               <Text>{workout.DumbbellCurl}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("DumbbellCurl", workout.DumbbellCurl)
-                }
+                onClick={() => {
+                  if (workout.DumbbellCurl) {
+                    handleDelete("DumbbellCurl", workout.DumbbellCurl);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.WBarCurl && (
             <CardTraining>
               <Text>{workout.WBarCurl}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("WBarCurl", workout.WBarCurl)
-                }
+                onClick={() => {
+                  if (workout.WBarCurl) {
+                    handleDelete("WBarCurl", workout.WBarCurl);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.HammerThread && (
             <CardTraining>
               <Text>{workout.HammerThread}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("HammerThread", workout.HammerThread)
-                }
+                onClick={() => {
+                  if (workout.HammerThread) {
+                    handleDelete("HammerThread", workout.HammerThread);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.InclineDumbbellCurl && (
             <CardTraining>
               <Text>{workout.InclineDumbbellCurl}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "InclineDumbbellCurl",
-                    workout.InclineDumbbellCurl
-                  )
-                }
+                onClick={() => {
+                  if (workout.InclineDumbbellCurl) {
+                    handleDelete("InclineDumbbellCurl", workout.InclineDumbbellCurl);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.PreacherBench && (
             <CardTraining>
               <Text>{workout.PreacherBench}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("PreacherBench", workout.PreacherBench)
-                }
+                onClick={() => {
+                  if (workout.PreacherBench) {
+                    handleDelete("PreacherBench", workout.PreacherBench);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {/* Peito */}
           {workout.BenchPress && (
             <CardTraining>
               <Text>{workout.BenchPress}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("BenchPress", workout.BenchPress)
-                }
+                onClick={() => {
+                  if (workout.BenchPress) {
+                    handleDelete("BenchPress", workout.BenchPress);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.InclineBenchPress && (
             <CardTraining>
               <Text>{workout.InclineBenchPress}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "InclineBenchPress",
-                    workout.InclineBenchPress
-                  )
-                }
+                onClick={() => {
+                  if (workout.InclineBenchPress) {
+                    handleDelete("InclineBenchPress", workout.InclineBenchPress);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.DeclineBenchPress && (
             <CardTraining>
               <Text>{workout.DeclineBenchPress}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "DeclineBenchPress",
-                    workout.DeclineBenchPress
-                  )
-                }
+                onClick={() => {
+                  if (workout.DeclineBenchPress) {
+                    handleDelete("DeclineBenchPress", workout.DeclineBenchPress);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.HighPulleyCross && (
             <CardTraining>
               <Text>{workout.HighPulleyCross}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "HighPulleyCross",
-                    workout.HighPulleyCross
-                  )
-                }
+                onClick={() => {
+                  if (workout.HighPulleyCross) {
+                    handleDelete("HighPulleyCross", workout.HighPulleyCross);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.CrossMediaPulley && (
             <CardTraining>
               <Text>{workout.CrossMediaPulley}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "CrossMediaPulley",
-                    workout.CrossMediaPulley
-                  )
-                }
+                onClick={() => {
+                  if (workout.CrossMediaPulley) {
+                    handleDelete("CrossMediaPulley", workout.CrossMediaPulley);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.CrossLowPulley && (
             <CardTraining>
               <Text>{workout.CrossLowPulley}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("CrossLowPulley", workout.CrossLowPulley)
-                }
+                onClick={() => {
+                  if (workout.CrossLowPulley) {
+                    handleDelete("CrossLowPulley", workout.CrossLowPulley);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Crucifix && (
             <CardTraining>
               <Text>{workout.Crucifix}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("Crucifix", workout.Crucifix)
-                }
+                onClick={() => {
+                  if (workout.Crucifix) {
+                    handleDelete("Crucifix", workout.Crucifix);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.LeaningCrucifix && (
             <CardTraining>
               <Text>{workout.LeaningCrucifix}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "LeaningCrucifix",
-                    workout.LeaningCrucifix
-                  )
-                }
+                onClick={() => {
+                  if (workout.LeaningCrucifix) {
+                    handleDelete("LeaningCrucifix", workout.LeaningCrucifix);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {/* Perna */}
           {workout.ExtensionChair && (
             <CardTraining>
               <Text>{workout.ExtensionChair}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("ExtensionChair", workout.ExtensionChair)
-                }
+                onClick={() => {
+                  if (workout.ExtensionChair) {
+                    handleDelete("ExtensionChair", workout.ExtensionChair);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.FlexorChair && (
             <CardTraining>
               <Text>{workout.FlexorChair}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("FlexorChair", workout.FlexorChair)
-                }
+                onClick={() => {
+                  if (workout.FlexorChair) {
+                    handleDelete("FlexorChair", workout.FlexorChair);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.FlexingTable && (
             <CardTraining>
               <Text>{workout.FlexingTable}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("FlexingTable", workout.FlexingTable)
-                }
+                onClick={() => {
+                  if (workout.FlexingTable) {
+                    handleDelete("FlexingTable", workout.FlexingTable);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.LegPress && (
             <CardTraining>
               <Text>{workout.LegPress}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("LegPress", workout.LegPress)
-                }
+                onClick={() => {
+                  if (workout.LegPress) {
+                    handleDelete("LegPress", workout.LegPress);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.AbductorChair && (
             <CardTraining>
               <Text>{workout.AbductorChair}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("AbductorChair", workout.AbductorChair)
-                }
+                onClick={() => {
+                  if (workout.AbductorChair) {
+                    handleDelete("AbductorChair", workout.AbductorChair);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.AdductorChair && (
             <CardTraining>
               <Text>{workout.AdductorChair}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("AdductorChair", workout.AdductorChair)
-                }
+                onClick={() => {
+                  if (workout.AdductorChair) {
+                    handleDelete("AdductorChair", workout.AdductorChair);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Bugaro && (
             <CardTraining>
               <Text>{workout.Bugaro}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Bugaro", workout.Bugaro)}
+                onClick={() => {
+                  if (workout.Bugaro) {
+                    handleDelete("Bugaro", workout.Bugaro);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Squat && (
             <CardTraining>
               <Text>{workout.Squat}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Squat", workout.Squat)}
+                onClick={() => {
+                  if (workout.Squat) {
+                    handleDelete("Squat", workout.Squat);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Hack && (
             <CardTraining>
               <Text>{workout.Hack}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Hack", workout.Hack)}
+                onClick={() => {
+                  if (workout.Hack) {
+                    handleDelete("Hack", workout.Hack);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Stiff && (
             <CardTraining>
               <Text>{workout.Stiff}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Stiff", workout.Stiff)}
+                onClick={() => {
+                  if (workout.Stiff) {
+                    handleDelete("Stiff", workout.Stiff);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Earth && (
             <CardTraining>
               <Text>{workout.Earth}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Earth", workout.Earth)}
+                onClick={() => {
+                  if (workout.Earth) {
+                    handleDelete("Earth", workout.Earth);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Lunge && (
             <CardTraining>
               <Text>{workout.Lunge}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("Lunge", workout.Lunge)}
+                onClick={() => {
+                  if (workout.Lunge) {
+                    handleDelete("Lunge", workout.Lunge);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.PelvicLift && (
             <CardTraining>
               <Text>{workout.PelvicLift}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("PelvicLift", workout.PelvicLift)
-                }
+                onClick={() => {
+                  if (workout.PelvicLift) {
+                    handleDelete("PelvicLift", workout.PelvicLift);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {/* Ombros */}
           {workout.LateralRaise && (
             <CardTraining>
               <Text>{workout.LateralRaise}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("LateralRaise", workout.LateralRaise)
-                }
+                onClick={() => {
+                  if (workout.LateralRaise) {
+                    handleDelete("LateralRaise", workout.LateralRaise);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.Development && (
             <CardTraining>
               <Text>{workout.Development}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("Development", workout.Development)
-                }
+                onClick={() => {
+                  if (workout.Development) {
+                    handleDelete("Development", workout.Development);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.LateralElevationPulley && (
             <CardTraining>
               <Text>{workout.LateralElevationPulley}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "LateralElevationPulley",
-                    workout.LateralElevationPulley
-                  )
-                }
+                onClick={() => {
+                  if (workout.LateralElevationPulley) {
+                    handleDelete(
+                      "LateralElevationPulley",
+                      workout.LateralElevationPulley
+                    );
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.FrontElevation && (
             <CardTraining>
               <Text>{workout.FrontElevation}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("FrontElevation", workout.FrontElevation)
-                }
+                onClick={() => {
+                  if (workout.FrontElevation) {
+                    handleDelete("FrontElevation", workout.FrontElevation);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.FrontPulleyRaise && (
             <CardTraining>
               <Text>{workout.FrontPulleyRaise}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "FrontPulleyRaise",
-                    workout.FrontPulleyRaise
-                  )
-                }
+                onClick={() => {
+                  if (workout.FrontPulleyRaise) {
+                    handleDelete(
+                      "FrontPulleyRaise",
+                      workout.FrontPulleyRaise
+                    );
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.InvertedCrucifix && (
             <CardTraining>
               <Text>{workout.InvertedCrucifix}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "InvertedCrucifix",
-                    workout.InvertedCrucifix
-                  )
-                }
+                onClick={() => {
+                  if (workout.InvertedCrucifix) {
+                    handleDelete(
+                      "InvertedCrucifix",
+                      workout.InvertedCrucifix
+                    );
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {/* Triceps */}
           {workout.TricepsBar && (
             <CardTraining>
               <Text>{workout.TricepsBar}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("TricepsBar", workout.TricepsBar)
-                }
+                onClick={() => {
+                  if (workout.TricepsBar) {
+                    handleDelete("TricepsBar", workout.TricepsBar);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.TricepsRope && (
             <CardTraining>
               <Text>{workout.TricepsRope}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("TricepsRope", workout.TricepsRope)
-                }
+                onClick={() => {
+                  if (workout.TricepsRope) {
+                    handleDelete("TricepsRope", workout.TricepsRope);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.French && (
             <CardTraining>
               <Text>{workout.French}</Text>
               <ButtonDelete
-                onClick={() => handleDeleteByField("French", workout.French)}
+                onClick={() => {
+                  if (workout.French) {
+                    handleDelete("French", workout.French);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.TricepsForehead && (
             <CardTraining>
               <Text>{workout.TricepsForehead}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField(
-                    "TricepsForehead",
-                    workout.TricepsForehead
-                  )
-                }
+                onClick={() => {
+                  if (workout.TricepsForehead) {
+                    handleDelete(
+                      "TricepsForehead",
+                      workout.TricepsForehead
+                    );
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}
+
           {workout.TricepsBench && (
             <CardTraining>
               <Text>{workout.TricepsBench}</Text>
               <ButtonDelete
-                onClick={() =>
-                  handleDeleteByField("TricepsBench", workout.TricepsBench)
-                }
+                onClick={() => {
+                  if (workout.TricepsBench) {
+                    handleDelete("TricepsBench", workout.TricepsBench);
+                  }
+                }}
               >
-                Delatar
+                Deletar
               </ButtonDelete>
             </CardTraining>
           )}

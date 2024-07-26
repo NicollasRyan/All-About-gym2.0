@@ -1,11 +1,8 @@
 import { Container, Grid } from "@mui/material";
-import { collection, getDocs } from "firebase/firestore";
 
 import { ContainerWorkout, TitleWeek } from "./styles";
 import { CardWeek } from "../../components/CardWeek";
-import { useEffect, useState } from "react";
-import { db } from "../../firebase";
-import { TypeTraining, workoutSunday } from "../../Hooks";
+import { TypeTraining } from "../../Hooks";
 
 export function WeeklyWorkout() {
   return (

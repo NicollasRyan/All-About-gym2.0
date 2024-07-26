@@ -1,3 +1,7 @@
+import { query, collection, where, getDocs, doc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
+import { AnyARecord } from "dns";
+
 export interface TypeTraining {
   id?: string;
   // costas
@@ -62,6 +66,46 @@ export interface FormData {
   [key: string]: any;
 }
 
+export const removeUndefinedFields = (obj: FormData) => {
+  const cleanedObj: FormData = {};
+  Object.keys(obj).forEach((key) => {
+    if (obj[key] !== undefined) {
+      cleanedObj[key] = obj[key];
+    }
+  });
+  return cleanedObj;
+};
+
+export const handleDeleteByField = async (userUid?: string, trainingId?: string, field?: any, value?: string) => {
+  try {
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("Usuário não autenticado");
+      return;
+    }
+
+    const q = query(
+      collection(db, "user", user.uid, "trainings"),
+      where(field, "==", value)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const docToDelete = querySnapshot.docs[0];
+      const docRef = doc(db, "user", user.uid, "trainings", docToDelete.id);
+      await updateDoc(docRef, {
+        [field]: null,
+      });
+      console.log("Campo removido com sucesso!");
+    } else {
+      console.log("Nenhum documento correspondente encontrado.");
+    }
+  } catch (error) {
+    console.error("Erro ao remover campo: ", error);
+  }
+};
+
 export const workoutSunday = (trainingData: TypeTraining[]): string => {
   const categories = new Set<string>();
 
@@ -77,7 +121,7 @@ export const workoutSunday = (trainingData: TypeTraining[]): string => {
       training.RowingMachine === "Remada na Maquina" ||
       training.InclineRowSupinatedGrip === "Remada Inclinada Pegada Supinada" ||
       training.RowingSupinatedGripMachine ===
-        "Remada na Maquina Pegada Supinada" ||
+      "Remada na Maquina Pegada Supinada" ||
       training.Saw === "Serrote" ||
       training.Pulldown === "Pulldown"
     ) {
