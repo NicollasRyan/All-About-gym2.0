@@ -29,6 +29,7 @@ const defaultTheme = createTheme();
 export function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [rememberMe, setRememberMe] = useState(false);
+    const [errorLogin, setErrorLogin] = useState(false);
 
     const navigate = useNavigate();
 
@@ -38,10 +39,11 @@ export function Login() {
             const persistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
             await setPersistence(auth, persistence);
             // Redirecione o usuário ou faça outras ações necessárias
-            console.log("MY GOD", "<=")
+            setErrorLogin(true)
             navigate("/")
         } catch (err) {
             // Lidando com erros de autenticação
+            setErrorLogin(true)
         }
     };
 
@@ -87,6 +89,7 @@ export function Login() {
                             {...register('password', { required: 'Senha é obrigatório' })}
                         />
                         {errors.password && <Error>{errors.password.message as string}</Error>}
+                        {errorLogin && <Error>Email ou senha estão incorretos</Error>}
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"

@@ -1,24 +1,13 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
-  collection,
   doc,
-  getDocs,
   setDoc,
   getDoc,
   updateDoc,
 } from "firebase/firestore";
 
-import {
-  BoxCard,
-  ButtonAdd,
-  ButtonMore,
-  CardTraining,
-  TitleWorkout,
-  Text,
-  ButtonDelete,
-  CardRest,
-} from "./styles";
+
 
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";
@@ -29,6 +18,7 @@ import { Leg } from "./Modals/Leg";
 import { auth, db } from "../../../firebase";
 import { Rest } from "./Modals/Rest";
 import { handleDeleteByField, removeUndefinedFields, TypeTraining } from "../../../Hooks";
+import { BoxCard, ButtonAdd, ButtonDelete, ButtonMore, CardRest, CardTraining, TitleWorkout, Text } from "../styles";
 
 export function MondayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);

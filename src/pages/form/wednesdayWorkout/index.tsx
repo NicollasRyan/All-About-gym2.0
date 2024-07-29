@@ -9,16 +9,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import {
-  BoxCard,
-  ButtonAdd,
-  ButtonMore,
-  CardTraining,
-  TitleWorkout,
-  Text,
-  ButtonDelete,
-  CardRest,
-} from "./styles";
+import { BoxCard, ButtonAdd, ButtonDelete, ButtonMore, CardRest, CardTraining, TitleWorkout, Text } from "../styles";
 
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";

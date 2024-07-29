@@ -23,13 +23,9 @@ export const CardTraining = styled(Box)`
   border-top: 1px solid gray;
   border-radius: 8px;
 
-  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
-  background: #262626;
+  background: #313234;
 
-  padding: 25px 10px;
-
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+  padding: 50px;
 `;
 
 export const CardRest = styled(Box)`
@@ -43,15 +39,15 @@ export const CardRest = styled(Box)`
   border-radius: 8px;
 
   box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
-  background: #262626;
+  background: #313234;
 
-  padding: 25px 10px;
-
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
+  padding: 50px;
 `;
 
-export const Text = styled(Typography)``;
+export const Text = styled(Typography)`
+  font-size: 18px;
+  font-weight: bold;
+`;
 
 export const ButtonDelete = styled(Button)`
   padding: 8px;
