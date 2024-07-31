@@ -1,15 +1,17 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import {
-  collection,
-  doc,
-  getDocs,
-  setDoc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
-import { BoxCard, ButtonAdd, ButtonDelete, ButtonMore, CardRest, CardTraining, TitleWorkout, Text } from "../styles";
+import {
+  BoxCard,
+  ButtonAdd,
+  ButtonDelete,
+  ButtonMore,
+  CardRest,
+  CardTraining,
+  TitleWorkout,
+  Text,
+} from "../styles";
 
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";
@@ -19,11 +21,15 @@ import { Triceps } from "./Modals/Triceps";
 import { Leg } from "./Modals/Leg";
 import { auth, db } from "../../../firebase";
 import { Rest } from "./Modals/Rest";
-import { handleDeleteByField, removeUndefinedFields, TypeTraining } from "../../../Hooks";
+import {
+  handleDeleteByField,
+  removeUndefinedFields,
+  TypeTraining,
+} from "../../../Hooks";
 
 export function SundayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
-  const [addTrainig, setAddTrainig] = useState(false);
+  const [addTraining, setAddTraining] = useState(true);
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -54,7 +60,7 @@ export function SundayWorkout() {
   const handleOpenLeg = () => setOpenLeg(true);
   const handleCloseLeg = () => setOpenLeg(false);
 
-  const trainingId = 'sunday_training';
+  const trainingId = "sunday_training";
 
   const fetchTrainingDocuments = async () => {
     const user = auth.currentUser;
@@ -80,7 +86,9 @@ export function SundayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-  }, [trainingId]);
+    const hasTraining = Object.values(training).some(value => value !== null && value !== undefined);
+    setAddTraining(!hasTraining);
+  }, [trainingId, training])
 
   const handleDelete = async (field: string, value: string) => {
     const user = auth.currentUser;
@@ -110,7 +118,7 @@ export function SundayWorkout() {
 
     const docRef = doc(db, "user", userUid, "trainings", trainingId);
 
-    setAddTrainig(false);
+    setAddTraining(false);
 
     try {
       const docSnap = await getDoc(docRef);
@@ -124,20 +132,19 @@ export function SundayWorkout() {
     } catch (error) {
       console.error("Erro ao salvar dados:", error);
     }
-
   };
 
   const handleMore = () => {
-    if (addTrainig === false) {
-      setAddTrainig(true);
+    if (addTraining === false) {
+      setAddTraining(true);
     } else {
-      setAddTrainig(false);
+      setAddTraining(false);
     }
   };
 
   return (
     <Container>
-      <TitleWorkout>Treino de Segunda</TitleWorkout>
+      <TitleWorkout>Treino de Domingo</TitleWorkout>
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           {workout.rest && (
@@ -176,7 +183,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.SupinatedHighGripPulldown) {
-                    handleDelete("SupinatedHighGripPulldown", workout.SupinatedHighGripPulldown);
+                    handleDelete(
+                      "SupinatedHighGripPulldown",
+                      workout.SupinatedHighGripPulldown
+                    );
                   }
                 }}
               >
@@ -206,7 +216,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.NeutralGripHighPull) {
-                    handleDelete("NeutralGripHighPull", workout.NeutralGripHighPull);
+                    handleDelete(
+                      "NeutralGripHighPull",
+                      workout.NeutralGripHighPull
+                    );
                   }
                 }}
               >
@@ -236,7 +249,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.RowingTriangleMachine) {
-                    handleDelete("RowingTriangleMachine", workout.RowingTriangleMachine);
+                    handleDelete(
+                      "RowingTriangleMachine",
+                      workout.RowingTriangleMachine
+                    );
                   }
                 }}
               >
@@ -281,7 +297,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InclineRowSupinatedGrip) {
-                    handleDelete("InclineRowSupinatedGrip", workout.InclineRowSupinatedGrip);
+                    handleDelete(
+                      "InclineRowSupinatedGrip",
+                      workout.InclineRowSupinatedGrip
+                    );
                   }
                 }}
               >
@@ -296,7 +315,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.RowingSupinatedGripMachine) {
-                    handleDelete("RowingSupinatedGripMachine", workout.RowingSupinatedGripMachine);
+                    handleDelete(
+                      "RowingSupinatedGripMachine",
+                      workout.RowingSupinatedGripMachine
+                    );
                   }
                 }}
               >
@@ -386,7 +408,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InclineDumbbellCurl) {
-                    handleDelete("InclineDumbbellCurl", workout.InclineDumbbellCurl);
+                    handleDelete(
+                      "InclineDumbbellCurl",
+                      workout.InclineDumbbellCurl
+                    );
                   }
                 }}
               >
@@ -432,7 +457,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InclineBenchPress) {
-                    handleDelete("InclineBenchPress", workout.InclineBenchPress);
+                    handleDelete(
+                      "InclineBenchPress",
+                      workout.InclineBenchPress
+                    );
                   }
                 }}
               >
@@ -447,7 +475,10 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.DeclineBenchPress) {
-                    handleDelete("DeclineBenchPress", workout.DeclineBenchPress);
+                    handleDelete(
+                      "DeclineBenchPress",
+                      workout.DeclineBenchPress
+                    );
                   }
                 }}
               >
@@ -797,10 +828,7 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.FrontPulleyRaise) {
-                    handleDelete(
-                      "FrontPulleyRaise",
-                      workout.FrontPulleyRaise
-                    );
+                    handleDelete("FrontPulleyRaise", workout.FrontPulleyRaise);
                   }
                 }}
               >
@@ -815,10 +843,7 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InvertedCrucifix) {
-                    handleDelete(
-                      "InvertedCrucifix",
-                      workout.InvertedCrucifix
-                    );
+                    handleDelete("InvertedCrucifix", workout.InvertedCrucifix);
                   }
                 }}
               >
@@ -879,10 +904,7 @@ export function SundayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.TricepsForehead) {
-                    handleDelete(
-                      "TricepsForehead",
-                      workout.TricepsForehead
-                    );
+                    handleDelete("TricepsForehead", workout.TricepsForehead);
                   }
                 }}
               >
@@ -910,11 +932,11 @@ export function SundayWorkout() {
 
       {!training.some((trainingItem) => trainingItem.rest) && (
         <ButtonMore onClick={handleMore}>
-          {addTrainig ? "Cancelar" : "Adiconar exercios"}
+          {addTraining ? "Cancelar" : "Adiconar exercios"}
         </ButtonMore>
       )}
 
-      {addTrainig && (
+      {addTraining && (
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>

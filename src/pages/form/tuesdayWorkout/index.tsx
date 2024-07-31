@@ -1,9 +1,7 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
-  collection,
   doc,
-  getDocs,
   setDoc,
   getDoc,
   updateDoc,
@@ -24,7 +22,7 @@ import { handleDeleteByField, removeUndefinedFields, TypeTraining } from "../../
 
 export function TuesdayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
-  const [addTraining, setAddTraining] = useState(false);
+  const [addTraining, setAddTraining] = useState(true);
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -81,7 +79,9 @@ export function TuesdayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-  }, [trainingId]);
+    const hasTraining = Object.values(training).some(value => value !== null && value !== undefined);
+    setAddTraining(!hasTraining);
+  }, [trainingId, training])
 
   const handleDelete = async (field: string, value: string) => {
     const user = auth.currentUser;
@@ -138,7 +138,7 @@ export function TuesdayWorkout() {
 
   return (
     <Container>
-      <TitleWorkout>Treino de Segunda</TitleWorkout>
+      <TitleWorkout>Treino de Terça-feira</TitleWorkout>
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           {workout.rest && (

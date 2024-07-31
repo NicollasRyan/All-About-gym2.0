@@ -1,5 +1,5 @@
 import { LockOutlined } from "@mui/icons-material";
-import { Typography, Container, CssBaseline, Box, Avatar, TextField, FormControlLabel, Checkbox, Button, Grid, Link } from "@mui/material";
+import { Typography, Container, CssBaseline, Box, Avatar, TextField, FormControlLabel, Checkbox, Button, Grid } from "@mui/material";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Error } from "./styles";
 
@@ -8,12 +8,13 @@ import { auth } from '../../firebase';
 import { useForm } from "react-hook-form";
 import { Navigate, useNavigate } from "react-router";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
+            <Link to="/" color="inherit">
                 Your Website
             </Link>{' '}
             {new Date().getFullYear()}
@@ -38,11 +39,9 @@ export function Login() {
             await signInWithEmailAndPassword(auth, data.email, data.password);
             const persistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
             await setPersistence(auth, persistence);
-            // Redirecione o usuário ou faça outras ações necessárias
             setErrorLogin(true)
             navigate("/")
         } catch (err) {
-            // Lidando com erros de autenticação
             setErrorLogin(true)
         }
     };
@@ -105,12 +104,12 @@ export function Login() {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link to="#">
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link to="/register">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

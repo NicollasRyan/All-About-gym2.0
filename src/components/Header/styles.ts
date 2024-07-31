@@ -1,4 +1,4 @@
-import { Box, Button, Container, Typography, styled } from "@mui/material";
+import { Box, Button, Container, MenuItem, Typography, styled } from "@mui/material";
 
 export const BoxHeader = styled(Box)`
   padding: 50px 0 50px;
@@ -27,6 +27,7 @@ export const BoxNavigation = styled(Box)`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const ButtonNavigation = styled(Button)`
@@ -38,3 +39,13 @@ export const ButtonNavigation = styled(Button)`
 
   margin-right: 10px;
 `;
+
+export const TextName = styled(Typography)`
+  font-size: 18px;
+
+  padding: 25px;
+`;
+
+export const ButtonMenu = styled(MenuItem)`
+  color: #ff2828;
+`

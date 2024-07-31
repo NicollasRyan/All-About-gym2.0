@@ -16,7 +16,7 @@ import {
   Text,
   ButtonDelete,
   CardRest,
-} from "./styles";
+} from "../styles";
 
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";
@@ -30,7 +30,7 @@ import { handleDeleteByField, removeUndefinedFields, TypeTraining } from "../../
 
 export function FridayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
-  const [addTrainig, setAddTrainig] = useState(false);
+  const [addTraining, setAddTraining] = useState(true);
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -69,6 +69,7 @@ export function FridayWorkout() {
       console.error("Usuário não autenticado");
       return;
     }
+    
 
     try {
       const docRef = doc(db, "user", user.uid, "trainings", trainingId);
@@ -87,7 +88,9 @@ export function FridayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-  }, [trainingId]);
+    const hasTraining = Object.values(training).some(value => value !== null && value !== undefined);
+    setAddTraining(!hasTraining);
+  }, [trainingId, training]);
 
   const handleDelete = async (field: string, value: string) => {
     const user = auth.currentUser;
@@ -117,7 +120,7 @@ export function FridayWorkout() {
 
     const docRef = doc(db, "user", userUid, "trainings", trainingId);
 
-    setAddTrainig(false);
+    setAddTraining(false);
 
     try {
       const docSnap = await getDoc(docRef);
@@ -135,16 +138,16 @@ export function FridayWorkout() {
   };
 
   const handleMore = () => {
-    if (addTrainig === false) {
-      setAddTrainig(true);
+    if (addTraining === false) {
+      setAddTraining(true);
     } else {
-      setAddTrainig(false);
+      setAddTraining(false);
     }
   };
 
   return (
     <Container>
-      <TitleWorkout>Treino de Segunda</TitleWorkout>
+      <TitleWorkout>Treino de Sexta-feira</TitleWorkout>
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           {workout.rest && (
@@ -916,12 +919,12 @@ export function FridayWorkout() {
       ))}
 
       {!training.some((trainingItem) => trainingItem.rest) && (
-        <ButtonMore onClick={handleMore}>
-          {addTrainig ? "Cancelar" : "Adiconar exercios"}
-        </ButtonMore>
+         <ButtonMore onClick={handleMore}>
+         {addTraining ? "Cancelar" : "Adiconar exercios"}
+       </ButtonMore>
       )}
 
-      {addTrainig && (
+      {addTraining && (
         <Grid container spacing={2}>
           <Grid item xs={6}>
             <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>
