@@ -6,7 +6,7 @@ import { Error } from "./styles";
 import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useForm } from "react-hook-form";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -70,7 +70,7 @@ export function Login() {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="Email"
                             autoComplete="email"
                             type="email"
                             {...register('email', { required: 'Email é obrigatório' })}
@@ -81,7 +81,7 @@ export function Login() {
                             margin="normal"
                             required
                             fullWidth
-                            label="Password"
+                            label="Senha"
                             id="password"
                             autoComplete="current-password"
                             type="password"
@@ -91,7 +91,7 @@ export function Login() {
                         {errorLogin && <Error>Email ou senha estão incorretos</Error>}
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
+                            label="Lembre de mim"
                             onChange={(e: any) => setRememberMe(e.target.checked)}
                         />
                         <Button
@@ -100,17 +100,17 @@ export function Login() {
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
                         >
-                            Sign In
+                            Login
                         </Button>
                         <Grid container>
-                            <Grid item xs>
+                            {/* <Grid item xs>
                                 <Link to="#">
-                                    Forgot password?
+                                    Esqueceu a senha?
                                 </Link>
-                            </Grid>
+                            </Grid> */}
                             <Grid item>
                                 <Link to="/register">
-                                    {"Don't have an account? Sign Up"}
+                                    {"Você não tem uma conta? register"}
                                 </Link>
                             </Grid>
                         </Grid>

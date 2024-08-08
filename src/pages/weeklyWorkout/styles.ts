@@ -8,5 +8,5 @@ export const TitleWeek = styled(Typography)`
 `;
 
 export const ContainerWorkout = styled(Grid)`
-  margin-top: 30px;
+  margin: 30px 0 30px 0;
 `;

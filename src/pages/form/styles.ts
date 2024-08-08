@@ -18,9 +18,7 @@ export const CardTraining = styled(Box)`
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 25px;
-  border-bottom: 1px solid gray;
-  border-top: 1px solid gray;
+  margin-bottom: 20px;
   border-radius: 8px;
 
   background: #313234;
@@ -33,12 +31,9 @@ export const CardRest = styled(Box)`
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 302px;
-  border-bottom: 1px solid gray;
-  border-top: 1px solid gray;
+  margin-bottom: 100px;
   border-radius: 8px;
 
-  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
   background: #313234;
 
   padding: 50px;
@@ -50,7 +45,7 @@ export const Text = styled(Typography)`
 `;
 
 export const ButtonDelete = styled(Button)`
-  padding: 8px;
+  padding: 15px;
   background: #da0008;
 
   color: #fff;
@@ -83,9 +78,10 @@ export const ButtonMore = styled(Button)`
   padding: 15px;
   background: #f40093;
 
+  margin-bottom: 165px;
+
   color: #fff;
   font-weight: 700;
-  margin-bottom: 30px;
 
   :hover {
     background: #c10074;

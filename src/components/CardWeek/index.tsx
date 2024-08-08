@@ -1,7 +1,7 @@
 import { CardContent } from "@mui/material";
 import { CardContainer, TitleCard, Training } from "./styles";
 import { useNavigate } from "react-router-dom";
-import { getDocs, collection, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import { TypeTraining, workoutSunday } from "../../Hooks";
@@ -37,7 +37,7 @@ export function CardWeek({ day, link }: CardType) {
     }
   };
 
-  const [trainingId, setTrainingId] = useState("")
+  const [trainingId, setTrainingId] = useState("");
 
   useEffect(() => {
     const fetchTrainingDocuments = async (collectionName: string) => {
@@ -46,7 +46,6 @@ export function CardWeek({ day, link }: CardType) {
         console.error("Usuário não autenticado");
         return;
       }
-
 
       try {
         const docRef = doc(db, "user", user.uid, "trainings", trainingId);

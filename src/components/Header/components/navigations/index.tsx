@@ -9,7 +9,7 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { ListItemText } from "./styles";
+import { BoxNavigation, ListItemText } from "./styles";
 import { useNavigate } from "react-router";
 
 interface TypeNavigations {
@@ -20,8 +20,7 @@ export function Navigations({ onClose }: TypeNavigations) {
   const navigate = useNavigate();
 
   return (
-    <Box
-      sx={{ width: 350, color: "#FFF" }}
+    <BoxNavigation
       role="presentation"
       onClick={() => onClose(false)}
     >
@@ -75,6 +74,6 @@ export function Navigations({ onClose }: TypeNavigations) {
         </ListItem>
       </List>
       <Divider />
-    </Box>
+    </BoxNavigation>
   );
 }

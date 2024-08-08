@@ -1,11 +1,14 @@
 import styled from "@emotion/styled";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export const BoxFooter = styled(Box)`
+  position: relative;
   margin-top: 30px;
   padding: 50px 0 50px;
   background: #4f4f4f;
   color: #fff;
+  bottom: 0;
+  margin-top: auto;
 `;
 
 export const TitleLogo = styled(Typography)`  

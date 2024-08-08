@@ -7,12 +7,11 @@ export const TitleHome = styled(Typography)`
   justify-content: center;
 
   font-size: 35px;
-  font-weight: 700;
+  font-weight: bold;
   padding: 100px;
 
   @media (max-width: 600px) {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 30px;
     padding: 80px;
   }
 `;

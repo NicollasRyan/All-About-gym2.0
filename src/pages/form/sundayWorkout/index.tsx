@@ -26,10 +26,11 @@ import {
   removeUndefinedFields,
   TypeTraining,
 } from "../../../Hooks";
+import { Delete } from "@mui/icons-material";
 
 export function SundayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
-  const [addTraining, setAddTraining] = useState(true);
+  const [addTraining, setAddTraining] = useState(false);
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -86,9 +87,7 @@ export function SundayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-    const hasTraining = Object.values(training).some(value => value !== null && value !== undefined);
-    setAddTraining(!hasTraining);
-  }, [trainingId, training])
+  }, [trainingId, training]);
 
   const handleDelete = async (field: string, value: string) => {
     const user = auth.currentUser;
@@ -101,7 +100,7 @@ export function SundayWorkout() {
       await handleDeleteByField(user.uid, trainingId, field, value);
       fetchTrainingDocuments();
     } catch (error) {
-      console.error("Erro ao deletar campo:", error);
+      console.error("Erro ao <Delete /> campo:", error);
     }
   };
 
@@ -157,7 +156,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Delatar
+                <Delete />
               </ButtonDelete>
             </CardRest>
           )}
@@ -172,7 +171,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -190,7 +189,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -205,7 +204,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -223,7 +222,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -238,7 +237,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -256,7 +255,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -271,7 +270,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -286,7 +285,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -304,7 +303,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -322,7 +321,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -337,7 +336,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -352,7 +351,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -367,7 +366,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -382,7 +381,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -397,7 +396,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -415,7 +414,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -430,7 +429,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -446,7 +445,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -464,7 +463,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -482,7 +481,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -497,7 +496,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -512,7 +511,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -527,7 +526,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -542,7 +541,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -557,7 +556,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -573,7 +572,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -588,7 +587,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -603,7 +602,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -618,7 +617,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -633,7 +632,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -648,7 +647,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -663,7 +662,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -678,7 +677,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -693,7 +692,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -708,7 +707,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -723,7 +722,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -738,7 +737,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -753,7 +752,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -769,7 +768,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -784,7 +783,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -802,7 +801,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -817,7 +816,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -832,7 +831,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -847,7 +846,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -863,7 +862,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -878,7 +877,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -893,7 +892,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -908,7 +907,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -923,7 +922,7 @@ export function SundayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -937,27 +936,27 @@ export function SundayWorkout() {
       )}
 
       {addTraining && (
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
+        <Grid container spacing={2} sx={{ margin: "-120px 0 30px 0" }}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenChest}>Peito</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenBack}>Costas</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenBiceps}>biceps</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenTriceps}>triceps</ButtonAdd>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenLeg}>Pernas</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenRest}>Descanço</ButtonAdd>
           </Grid>
         </Grid>

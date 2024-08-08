@@ -1,13 +1,17 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import {
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 
-import { BoxCard, ButtonAdd, ButtonDelete, ButtonMore, CardRest, CardTraining, TitleWorkout, Text } from "../styles";
+import {
+  BoxCard,
+  ButtonAdd,
+  ButtonDelete,
+  ButtonMore,
+  CardRest,
+  CardTraining,
+  TitleWorkout,
+  Text,
+} from "../styles";
 
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";
@@ -17,11 +21,16 @@ import { Triceps } from "./Modals/Triceps";
 import { Leg } from "./Modals/Leg";
 import { auth, db } from "../../../firebase";
 import { Rest } from "./Modals/Rest";
-import { handleDeleteByField, removeUndefinedFields, TypeTraining } from "../../../Hooks";
+import {
+  handleDeleteByField,
+  removeUndefinedFields,
+  TypeTraining,
+} from "../../../Hooks";
+import { Delete } from "@mui/icons-material";
 
 export function WednesdayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
-  const [addTraining, setAddTraining] = useState(true);
+  const [addTraining, setAddTraining] = useState(false);
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -52,7 +61,7 @@ export function WednesdayWorkout() {
   const handleOpenLeg = () => setOpenLeg(true);
   const handleCloseLeg = () => setOpenLeg(false);
 
-  const trainingId = 'wednesday_training';
+  const trainingId = "wednesday_training";
 
   const fetchTrainingDocuments = async () => {
     const user = auth.currentUser;
@@ -78,9 +87,7 @@ export function WednesdayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-    const hasTraining = Object.values(training).some(value => value !== null && value !== undefined);
-    setAddTraining(!hasTraining);
-  }, [trainingId, training]);
+  }, [trainingId]);
 
   const handleDelete = async (field: string, value: string) => {
     const user = auth.currentUser;
@@ -93,7 +100,7 @@ export function WednesdayWorkout() {
       await handleDeleteByField(user.uid, trainingId, field, value);
       fetchTrainingDocuments();
     } catch (error) {
-      console.error("Erro ao deletar campo:", error);
+      console.error("Erro ao <Delete /> campo:", error);
     }
   };
 
@@ -124,7 +131,6 @@ export function WednesdayWorkout() {
     } catch (error) {
       console.error("Erro ao salvar dados:", error);
     }
-
   };
 
   const handleMore = () => {
@@ -150,7 +156,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Delatar
+                <Delete />
               </ButtonDelete>
             </CardRest>
           )}
@@ -165,7 +171,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -176,11 +182,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.SupinatedHighGripPulldown) {
-                    handleDelete("SupinatedHighGripPulldown", workout.SupinatedHighGripPulldown);
+                    handleDelete(
+                      "SupinatedHighGripPulldown",
+                      workout.SupinatedHighGripPulldown
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -195,7 +204,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -206,11 +215,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.NeutralGripHighPull) {
-                    handleDelete("NeutralGripHighPull", workout.NeutralGripHighPull);
+                    handleDelete(
+                      "NeutralGripHighPull",
+                      workout.NeutralGripHighPull
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -225,7 +237,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -236,11 +248,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.RowingTriangleMachine) {
-                    handleDelete("RowingTriangleMachine", workout.RowingTriangleMachine);
+                    handleDelete(
+                      "RowingTriangleMachine",
+                      workout.RowingTriangleMachine
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -255,7 +270,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -270,7 +285,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -281,11 +296,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InclineRowSupinatedGrip) {
-                    handleDelete("InclineRowSupinatedGrip", workout.InclineRowSupinatedGrip);
+                    handleDelete(
+                      "InclineRowSupinatedGrip",
+                      workout.InclineRowSupinatedGrip
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -296,11 +314,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.RowingSupinatedGripMachine) {
-                    handleDelete("RowingSupinatedGripMachine", workout.RowingSupinatedGripMachine);
+                    handleDelete(
+                      "RowingSupinatedGripMachine",
+                      workout.RowingSupinatedGripMachine
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -315,7 +336,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -330,7 +351,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -345,7 +366,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -360,7 +381,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -375,7 +396,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -386,11 +407,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InclineDumbbellCurl) {
-                    handleDelete("InclineDumbbellCurl", workout.InclineDumbbellCurl);
+                    handleDelete(
+                      "InclineDumbbellCurl",
+                      workout.InclineDumbbellCurl
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -405,7 +429,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -421,7 +445,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -432,11 +456,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InclineBenchPress) {
-                    handleDelete("InclineBenchPress", workout.InclineBenchPress);
+                    handleDelete(
+                      "InclineBenchPress",
+                      workout.InclineBenchPress
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -447,11 +474,14 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.DeclineBenchPress) {
-                    handleDelete("DeclineBenchPress", workout.DeclineBenchPress);
+                    handleDelete(
+                      "DeclineBenchPress",
+                      workout.DeclineBenchPress
+                    );
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -466,7 +496,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -481,7 +511,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -496,7 +526,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -511,7 +541,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -526,7 +556,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -542,7 +572,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -557,7 +587,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -572,7 +602,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -587,7 +617,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -602,7 +632,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -617,7 +647,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -632,7 +662,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -647,7 +677,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -662,7 +692,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -677,7 +707,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -692,7 +722,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -707,7 +737,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -722,7 +752,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -738,7 +768,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -753,7 +783,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -771,7 +801,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -786,7 +816,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -797,14 +827,11 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.FrontPulleyRaise) {
-                    handleDelete(
-                      "FrontPulleyRaise",
-                      workout.FrontPulleyRaise
-                    );
+                    handleDelete("FrontPulleyRaise", workout.FrontPulleyRaise);
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -815,14 +842,11 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.InvertedCrucifix) {
-                    handleDelete(
-                      "InvertedCrucifix",
-                      workout.InvertedCrucifix
-                    );
+                    handleDelete("InvertedCrucifix", workout.InvertedCrucifix);
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -838,7 +862,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -853,7 +877,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -868,7 +892,7 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -879,14 +903,11 @@ export function WednesdayWorkout() {
               <ButtonDelete
                 onClick={() => {
                   if (workout.TricepsForehead) {
-                    handleDelete(
-                      "TricepsForehead",
-                      workout.TricepsForehead
-                    );
+                    handleDelete("TricepsForehead", workout.TricepsForehead);
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
@@ -901,42 +922,40 @@ export function WednesdayWorkout() {
                   }
                 }}
               >
-                Deletar
+                <Delete />
               </ButtonDelete>
             </CardTraining>
           )}
         </BoxCard>
       ))}
-      {
-        !training.some((trainingItem) => trainingItem.rest) && (
-          <ButtonMore onClick={handleMore}>
-            {addTraining ? "Cancelar" : "Adiconar exercios"}
-          </ButtonMore>
-        )
-      }
+      {!training.some((trainingItem) => trainingItem.rest) && (
+        <ButtonMore onClick={handleMore}>
+          {addTraining ? "Cancelar" : "Adiconar exercios"}
+        </ButtonMore>
+      )}
 
       {addTraining && (
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
+        <Grid container spacing={2} sx={{ margin: "-120px 0 30px 0" }}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenChest}>Peito</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenBack}>Costas</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenBiceps}>biceps</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenTriceps}>triceps</ButtonAdd>
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenLeg}>Pernas</ButtonAdd>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenRest}>Descanço</ButtonAdd>
           </Grid>
         </Grid>

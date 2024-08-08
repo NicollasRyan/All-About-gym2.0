@@ -76,7 +76,7 @@ export function Register() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Register
           </Typography>
           <Box
             component="form"
@@ -91,7 +91,7 @@ export function Register() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Nome"
                   {...register("first_name", { required: "Nome é obrigatório" })}
                   autoFocus
                 />
@@ -104,7 +104,7 @@ export function Register() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Sobrenome"
                   {...register("last_name", { required: "Sobrenome é obrigatório" })}
                   autoComplete="family-name"
                 />
@@ -117,7 +117,7 @@ export function Register() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   autoComplete="email"
                   type="email"
                   {...register("email", { required: "Email é obrigatório" })}
@@ -130,7 +130,7 @@ export function Register() {
                 <TextField
                   required
                   fullWidth
-                  label="Password"
+                  label="Senha"
                   id="password"
                   autoComplete="new-password"
                   type="password"
@@ -147,12 +147,12 @@ export function Register() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Register
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <ButtonLink to="/login">
-                  Already have an account? Sign in
+                  Já tem uma conta? Login
                 </ButtonLink>
               </Grid>
             </Grid>

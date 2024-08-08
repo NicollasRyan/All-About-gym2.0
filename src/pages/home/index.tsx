@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, Hidden } from "@mui/material";
 import { ImgIcon, TitleHome } from "./styles";
 import iconGym from "../../images/iconGym.jpg";
 import { CardWeek } from "../../components/CardWeek";
@@ -56,13 +56,15 @@ export function Home() {
   return (
     <Container sx={{ paddingBottom: "100px" }}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={12} lg={12}>
           <TitleHome>{greetingMessage}</TitleHome>
         </Grid>
-        <Grid item xs={6}>
-          <ImgIcon src={iconGym} />
-        </Grid>
-        <Grid item xs={6}>
+        <Hidden smDown>
+          <Grid item xs={12} lg={6} >
+            <ImgIcon src={iconGym} />
+          </Grid>
+        </Hidden>
+        <Grid item xs={12} sm={12} lg={6}>
           <CardWeek day={nameWeekDay} link={linkMessage} />
         </Grid>
       </Grid>
