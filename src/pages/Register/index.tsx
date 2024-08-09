@@ -12,13 +12,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { Error } from "./styles";
 
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useForm } from "react-hook-form";
 import { Link as ButtonLink, useNavigate } from "react-router-dom";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
+import { InputAdornment, IconButton } from "@mui/material";
+import { useState } from "react";
 
 function Copyright(props: any) {
   return (
@@ -49,15 +49,31 @@ export function Register() {
   } = useForm();
   const navigate = useNavigate();
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const onSubmit = async (data: any) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
 
       await updateProfile(userCredential.user, {
-        displayName: `${data.first_name} ${data.last_name}`
-    });
+        displayName: `${data.first_name} ${data.last_name}`,
+      });
       navigate("/login");
     } catch (err) {}
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
   };
 
   return (
@@ -92,7 +108,9 @@ export function Register() {
                   fullWidth
                   id="firstName"
                   label="Nome"
-                  {...register("first_name", { required: "Nome é obrigatório" })}
+                  {...register("first_name", {
+                    required: "Nome é obrigatório",
+                  })}
                   autoFocus
                 />
                 {errors.first_name && (
@@ -105,7 +123,9 @@ export function Register() {
                   fullWidth
                   id="lastName"
                   label="Sobrenome"
-                  {...register("last_name", { required: "Sobrenome é obrigatório" })}
+                  {...register("last_name", {
+                    required: "Sobrenome é obrigatório",
+                  })}
                   autoComplete="family-name"
                 />
                 {errors.last_name && (
@@ -133,8 +153,22 @@ export function Register() {
                   label="Senha"
                   id="password"
                   autoComplete="new-password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   {...register("password", { required: "Senha é obrigatório" })}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
                 {errors.password && (
                   <Error>{errors.password.message as string}</Error>
@@ -151,9 +185,7 @@ export function Register() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <ButtonLink to="/login">
-                  Já tem uma conta? Login
-                </ButtonLink>
+                <ButtonLink to="/login">Já tem uma conta? Login</ButtonLink>
               </Grid>
             </Grid>
           </Box>
