@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Title = styled(Typography)`
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 35px;
     font-weight: 700;
 `
 
