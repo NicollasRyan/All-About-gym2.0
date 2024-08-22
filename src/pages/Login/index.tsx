@@ -70,7 +70,6 @@ export function Login() {
         ? browserLocalPersistence
         : browserSessionPersistence;
       await setPersistence(auth, persistence);
-      setErrorLogin(true);
       navigate("/");
     } catch (err) {
       setErrorLogin(true);

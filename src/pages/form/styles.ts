@@ -3,13 +3,9 @@ import { Box, Button, Typography } from "@mui/material";
 
 export const TitleWorkout = styled(Typography)`
   padding: 25px 0;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 35px;
+  font-weight: bold;
 `;
-
-export const BoxAddTraning = styled(Box)``;
-
-export const TextWoukout = styled(Typography)``;
 
 export const BoxCard = styled(Box)``;
 
@@ -40,8 +36,12 @@ export const CardRest = styled(Box)`
 `;
 
 export const Text = styled(Typography)`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
+
+  @media (max-width: 600px) {
+    padding: 18px;
+  }
 `;
 
 export const ButtonDelete = styled(Button)`
@@ -52,6 +52,10 @@ export const ButtonDelete = styled(Button)`
 
   :hover {
     background: #890005;
+  }
+
+  @media (max-width: 600px) {
+    padding: 5px;
   }
 `;
 

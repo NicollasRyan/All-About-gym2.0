@@ -8,7 +8,7 @@ export const Title = styled(Typography)`
 `
 
 export const Text = styled(Typography)`
-    margin-bottom: 8px;
+    margin-bottom: 20px;
     font-size: 18;
     font-weight: 400;
 `

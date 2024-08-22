@@ -1,5 +1,5 @@
 import { Container, Grid } from "@mui/material";
-import { Title, Text } from "./styles";
+import { Title, Text } from "../styles";
 
 export function WeightLoss() {
     return (

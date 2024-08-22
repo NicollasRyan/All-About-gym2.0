@@ -1,6 +1,5 @@
 import { query, collection, where, getDocs, doc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import { AnyARecord } from "dns";
 
 export interface TypeTraining {
   id?: string;
