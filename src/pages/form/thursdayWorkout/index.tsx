@@ -951,12 +951,8 @@ export function ThursdayWorkout() {
           <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenTriceps}>triceps</ButtonAdd>
           </Grid>
-
           <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenLeg}>Pernas</ButtonAdd>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenRest}>Descanço</ButtonAdd>
           </Grid>
         </Grid>
       )}

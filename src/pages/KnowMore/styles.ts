@@ -7,6 +7,10 @@ export const Title = styled(Typography)`
     font-weight: 700;
 `
 
+export const HighlightedText = styled.span`
+    font-weight: bold;
+`
+
 export const Text = styled(Typography)`
     margin-bottom: 20px;
     font-size: 18;

@@ -7,7 +7,6 @@ import {
   Navigate,
   Route,
   RouterProvider,
-  Routes,
 } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import { Home } from "./pages/home";
@@ -25,6 +24,8 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
+import { StrengthTraining } from "./pages/KnowMore/StrengthTraining";
+import { ResistanceTraining } from "./pages/KnowMore/ResistanceTraining";
 
 
 const Main = () => {
@@ -63,6 +64,8 @@ const Main = () => {
           <Route path="/saturday-workout" element={isAuthenticated ? <SaturdayWorkout /> : <Navigate to="/login" />} />
           <Route path="/know-more/muscular-mass" element={isAuthenticated ? <MuscularMass /> : <Navigate to="/login" />} />
           <Route path="/know-more/weight-loss" element={isAuthenticated ? <WeightLoss /> : <Navigate to="/login" />} />
+          <Route path="/know-more/strength-training" element={isAuthenticated ? <StrengthTraining /> : <Navigate to="/login" />} />
+          <Route path="/know-more/resistance-training" element={isAuthenticated ? <ResistanceTraining /> : <Navigate to="/login" />} />
         </Route>
       </>
     )

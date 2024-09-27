@@ -953,9 +953,6 @@ export function MondayWorkout() {
           <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenLeg}>Pernas</ButtonAdd>
           </Grid>
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenRest}>Descanso</ButtonAdd>
-          </Grid>
         </Grid>
       )}
 

@@ -2,7 +2,6 @@ import { Container, Grid } from "@mui/material";
 
 import { ContainerWorkout, TitleWeek } from "./styles";
 import { CardWeek } from "../../components/CardWeek";
-import { TypeTraining } from "../../Hooks";
 
 export function WeeklyWorkout() {
   return (

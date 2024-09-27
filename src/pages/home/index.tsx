@@ -56,16 +56,16 @@ export function Home() {
   return (
     <Container sx={{ paddingBottom: "100px" }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={12} lg={12}>
+        <Grid item lg={12} md={12} xs={12}>
           <TitleHome>{greetingMessage}</TitleHome>
         </Grid>
-        <Hidden smDown>
-          <Grid item xs={12} lg={6} >
-            <ImgIcon src={iconGym} />
+        <Hidden smDown mdDown>
+          <Grid item lg={6} md={6} >
+            <ImgIcon src={iconGym}/>
           </Grid>
         </Hidden>
-        <Grid item xs={12} sm={12} lg={6}>
-          <CardWeek day={nameWeekDay} link={linkMessage} />
+        <Grid item lg={6} md={6} xs={12}>
+          <CardWeek day={nameWeekDay} link={linkMessage}/>
         </Grid>
       </Grid>
     </Container>
