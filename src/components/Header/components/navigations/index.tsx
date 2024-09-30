@@ -1,4 +1,10 @@
-import { FitnessCenter, Home } from "@mui/icons-material";
+import {
+  DinnerDining,
+  FitnessCenter,
+  Home,
+  LocalDining,
+  SportsGymnastics,
+} from "@mui/icons-material";
 import {
   List,
   ListItem,
@@ -9,7 +15,6 @@ import {
 } from "@mui/material";
 import { BoxNavigation, ListItemText } from "./styles";
 import { useNavigate } from "react-router";
-
 
 interface TypeNavigations {
   onClose: any;
@@ -44,7 +49,9 @@ export function Navigations({ onClose }: TypeNavigations) {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemText sx={{marginLeft: "35px"}}>Saiba mais sobre:</ListItemText>
+          <ListItemText sx={{ marginLeft: "35px" }}>
+            Saiba mais sobre:
+          </ListItemText>
         </ListItem>
       </List>
       <List>
@@ -52,7 +59,7 @@ export function Navigations({ onClose }: TypeNavigations) {
           <ListItemButton onClick={() => navigate("/know-more/muscular-mass")}>
             <ListItemIcon>
               <Typography sx={{ color: "#FFF", fontSize: "20px" }}>
-                💪
+                <DinnerDining />
               </Typography>
             </ListItemIcon>
             <ListItemText>Ganho de masssa muscular</ListItemText>
@@ -65,7 +72,7 @@ export function Navigations({ onClose }: TypeNavigations) {
           <ListItemButton onClick={() => navigate("/know-more/weight-loss")}>
             <ListItemIcon>
               <Typography sx={{ color: "#FFF", fontSize: "20px" }}>
-                💪
+                <LocalDining />
               </Typography>
             </ListItemIcon>
             <ListItemText>Perca de peso</ListItemText>
@@ -75,10 +82,12 @@ export function Navigations({ onClose }: TypeNavigations) {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/know-more/resistance-training")}>
+          <ListItemButton
+            onClick={() => navigate("/know-more/resistance-training")}
+          >
             <ListItemIcon>
               <Typography sx={{ color: "#FFF", fontSize: "20px" }}>
-                💪
+                <SportsGymnastics />
               </Typography>
             </ListItemIcon>
             <ListItemText>Treinos de resistência</ListItemText>
@@ -88,10 +97,12 @@ export function Navigations({ onClose }: TypeNavigations) {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton onClick={() => navigate("/know-more/strength-training")}>
+          <ListItemButton
+            onClick={() => navigate("/know-more/strength-training")}
+          >
             <ListItemIcon>
               <Typography sx={{ color: "#FFF", fontSize: "20px" }}>
-                💪
+                <FitnessCenter />
               </Typography>
             </ListItemIcon>
             <ListItemText>Treinos de força</ListItemText>
