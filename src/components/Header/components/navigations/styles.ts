@@ -16,3 +16,9 @@ export const ListItem = styled(Box)`
 export const ListItemText = styled(Typography)`
   color: #fff;
 `;
+
+export const Text = styled(Typography)`
+  margin: 20px 0 0 12px;
+  font-size: 12px;
+  color: #a3a3a3;
+`;

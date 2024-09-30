@@ -13,7 +13,7 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
-import { BoxNavigation, ListItemText } from "./styles";
+import { BoxNavigation, ListItemText, Text } from "./styles";
 import { useNavigate } from "react-router";
 
 interface TypeNavigations {
@@ -110,6 +110,8 @@ export function Navigations({ onClose }: TypeNavigations) {
         </ListItem>
       </List>
       <Divider />
+
+      <Text>© 2024 AllGym.</Text>
     </BoxNavigation>
   );
 }
