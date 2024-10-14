@@ -38,7 +38,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link to="/" color="inherit">
-        Your Website
+        AllGym
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -57,7 +57,7 @@ export function Login() {
     formState: { errors },
   } = useForm();
   const [rememberMe, setRememberMe] = useState(false);
-  const [errorLogin, setErrorLogin] = useState(false);
+  const [errorLogin, setErrorLogin] = useState(false)
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -69,9 +69,9 @@ export function Login() {
       const persistence = rememberMe
         ? browserLocalPersistence
         : browserSessionPersistence;
-      await setPersistence(auth, persistence);
-      navigate("/");
-    } catch (err) {
+        await setPersistence(auth, persistence);
+        navigate("/");
+    } catch (err: any) {
       setErrorLogin(true);
     }
   };
@@ -164,11 +164,6 @@ export function Login() {
               Login
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                                <Link to="#">
-                                    Esqueceu a senha?
-                                </Link>
-                            </Grid> */}
               <Grid item>
                 <Link to="/register">{"Você não tem uma conta? register"}</Link>
               </Grid>

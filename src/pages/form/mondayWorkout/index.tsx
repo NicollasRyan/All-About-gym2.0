@@ -1,6 +1,12 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  deleteField,
+} from "firebase/firestore";
 
 import { Chest } from "./Modals/Chest";
 import { Back } from "./Modals/Back";
@@ -10,11 +16,7 @@ import { Triceps } from "./Modals/Triceps";
 import { Leg } from "./Modals/Leg";
 import { auth, db } from "../../../firebase";
 import { Rest } from "./Modals/Rest";
-import {
-  handleDeleteByField,
-  removeUndefinedFields,
-  TypeTraining,
-} from "../../../Hooks";
+import { removeUndefinedFields, TypeTraining } from "../../../Hooks";
 import {
   BoxCard,
   ButtonAdd,
@@ -88,6 +90,8 @@ export function MondayWorkout() {
     fetchTrainingDocuments();
   }, [trainingId]);
 
+  console.log("Training:", training);
+
   const handleDelete = async (field: string, value: string) => {
     const user = auth.currentUser;
     if (!user) {
@@ -96,7 +100,10 @@ export function MondayWorkout() {
     }
 
     try {
-      await handleDeleteByField(user.uid, trainingId, field, value);
+      const trainingDocRef = doc(db, "user", user.uid, "trainings", trainingId);
+      await updateDoc(trainingDocRef, {
+        [field]: deleteField(),
+      });
       fetchTrainingDocuments();
     } catch (error) {
       console.error("Erro ao <Delete /> campo:", error);
@@ -139,6 +146,8 @@ export function MondayWorkout() {
       setAddTraining(false);
     }
   };
+
+  const dayTraining = training.find((trainingItem) => trainingItem.id === trainingId);
 
   return (
     <Container>
@@ -935,6 +944,12 @@ export function MondayWorkout() {
 
       {addTraining && (
         <Grid container spacing={2} sx={{ margin: "-120px 0 30px 0" }}>
+          {dayTraining && Object.keys(dayTraining).length === 1 && (
+            <Grid item sm={12} md={6}>
+              <ButtonAdd onClick={handleOpenRest}>Descansar</ButtonAdd>
+            </Grid>
+          )}
+
           <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenShoulder}>Ombro</ButtonAdd>
           </Grid>

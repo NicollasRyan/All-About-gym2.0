@@ -1,6 +1,12 @@
 import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  deleteField,
+} from "firebase/firestore";
 
 import {
   BoxCard,
@@ -21,11 +27,7 @@ import { Triceps } from "./Modals/Triceps";
 import { Leg } from "./Modals/Leg";
 import { auth, db } from "../../../firebase";
 import { Rest } from "./Modals/Rest";
-import {
-  handleDeleteByField,
-  removeUndefinedFields,
-  TypeTraining,
-} from "../../../Hooks";
+import { removeUndefinedFields, TypeTraining } from "../../../Hooks";
 import { Delete } from "@mui/icons-material";
 
 export function SundayWorkout() {
@@ -97,7 +99,10 @@ export function SundayWorkout() {
     }
 
     try {
-      await handleDeleteByField(user.uid, trainingId, field, value);
+      const trainingDocRef = doc(db, "user", user.uid, "trainings", trainingId);
+      await updateDoc(trainingDocRef, {
+        [field]: deleteField(),
+      });
       fetchTrainingDocuments();
     } catch (error) {
       console.error("Erro ao <Delete /> campo:", error);
@@ -140,6 +145,10 @@ export function SundayWorkout() {
       setAddTraining(false);
     }
   };
+
+  const dayTraining = training.find(
+    (trainingItem) => trainingItem.id === trainingId
+  );
 
   return (
     <Container>
@@ -937,6 +946,11 @@ export function SundayWorkout() {
 
       {addTraining && (
         <Grid container spacing={2} sx={{ margin: "-120px 0 30px 0" }}>
+          {dayTraining && Object.keys(dayTraining).length === 1 && (
+            <Grid item sm={12} md={6}>
+              <ButtonAdd onClick={handleOpenRest}>Descansar</ButtonAdd>
+            </Grid>
+          )}
           <Grid item sm={12} md={6}>
             <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>
           </Grid>

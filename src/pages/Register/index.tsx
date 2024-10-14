@@ -30,7 +30,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        AllGym
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -58,7 +58,7 @@ export function Register() {
         data.email,
         data.password
       );
-
+      
       await updateProfile(userCredential.user, {
         displayName: `${data.first_name} ${data.last_name}`,
       });

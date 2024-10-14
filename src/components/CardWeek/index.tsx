@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
-import { TypeTraining, workoutSunday } from "../../Hooks";
+import { TypeTraining, workoutWeek } from "../../Hooks";
 
 interface CardType {
   day: string;
@@ -21,19 +21,19 @@ export function CardWeek({ day, link }: CardType) {
 
   const weekTraining = (day: string) => {
     if (day === "Domingo") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     } else if (day === "Segunda-feira") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     } else if (day === "Terça-feira") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     } else if (day === "Quarta-feira") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     } else if (day === "Quinta-feira") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     } else if (day === "Sexta-feira") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     } else if (day === "Sábado") {
-      return workoutSunday(workout);
+      return workoutWeek(workout);
     }
   };
 

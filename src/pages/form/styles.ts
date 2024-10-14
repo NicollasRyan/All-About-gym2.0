@@ -16,6 +16,7 @@ export const CardTraining = styled(Box)`
 
   margin-bottom: 20px;
   border-radius: 8px;
+  border: 1px solid #a8a8a8;
 
   background: #313234;
 
@@ -27,7 +28,7 @@ export const CardRest = styled(Box)`
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 100px;
+  margin-bottom: 227px;
   border-radius: 8px;
 
   background: #313234;
@@ -46,12 +47,13 @@ export const Text = styled(Typography)`
 
 export const ButtonDelete = styled(Button)`
   padding: 15px;
-  background: #da0008;
+  border: 1px solid #fa5e55;
 
-  color: #fff;
+  color: #fa5e55;
 
   :hover {
-    background: #890005;
+    background: #ff1b14;
+    color: #dbdbdb;
   }
 
   @media (max-width: 600px) {

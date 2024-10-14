@@ -1,6 +1,3 @@
-import { query, collection, where, getDocs, doc, updateDoc } from "firebase/firestore";
-import { auth, db } from "../firebase";
-
 export interface TypeTraining {
   id?: string;
   // costas
@@ -75,37 +72,7 @@ export const removeUndefinedFields = (obj: FormData) => {
   return cleanedObj;
 };
 
-export const handleDeleteByField = async (userUid?: string, trainingId?: string, field?: any, value?: string) => {
-  try {
-    const user = auth.currentUser;
-    if (!user) {
-      console.error("Usuário não autenticado");
-      return;
-    }
-
-    const q = query(
-      collection(db, "user", user.uid, "trainings"),
-      where(field, "==", value)
-    );
-
-    const querySnapshot = await getDocs(q);
-
-    if (!querySnapshot.empty) {
-      const docToDelete = querySnapshot.docs[0];
-      const docRef = doc(db, "user", user.uid, "trainings", docToDelete.id);
-      await updateDoc(docRef, {
-        [field]: null,
-      });
-      console.log("Campo removido com sucesso!");
-    } else {
-      console.log("Nenhum documento correspondente encontrado.");
-    }
-  } catch (error) {
-    console.error("Erro ao remover campo: ", error);
-  }
-};
-
-export const workoutSunday = (trainingData: TypeTraining[]): string => {
+export const workoutWeek = (trainingData: TypeTraining[]): string => {
   const categories = new Set<string>();
 
   for (const training of trainingData) {
@@ -191,4 +158,4 @@ export const workoutSunday = (trainingData: TypeTraining[]): string => {
   return categories.size > 0
     ? Array.from(categories).join(" e ")
     : "Monte seu treino semanal";
-};
+}; 
