@@ -1,4 +1,4 @@
-import { Container, Grid } from "@mui/material";
+import { Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
   doc,
@@ -10,7 +10,6 @@ import {
 
 import {
   BoxCard,
-  ButtonAdd,
   ButtonMore,
   TitleWorkout,
 } from "../styles";
@@ -26,13 +25,14 @@ import { Rest } from "../components/Modals/Rest";
 import { auth, db } from "../../../firebase";
 import { removeUndefinedFields, TypeTraining } from "../../../Hooks";
 
-import { BackWork } from "../components/BackWork";
-import { BicepsWork } from "../components/BicepsWork";
-import { ChestWork } from "../components/ChestWork";
-import { LegWork } from "../components/LegWork";
-import { RestWork } from "../components/RestWork";
-import { ShoulderWork } from "../components/ShouderWork/inde";
-import { TricepsWork } from "../components/TricepsWork";
+import { BackWork } from "../components/workout/BackWork";
+import { BicepsWork } from "../components/workout/BicepsWork";
+import { ChestWork } from "../components/workout/ChestWork";
+import { LegWork } from "../components/workout/LegWork";
+import { RestWork } from "../components/workout/RestWork";
+import { ShoulderWork } from "../components/workout/ShouderWork/inde";
+import { TricepsWork } from "../components/workout/TricepsWork";
+import { ButtonOpenModals } from "../components/ButtonOpenModals";
 
 export function FridayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
@@ -152,10 +152,6 @@ export function FridayWorkout() {
     }
   };
 
-  const dayTraining = training.find(
-    (trainingItem) => trainingItem.id === trainingId
-  );
-
   return (
     <Container>
       <TitleWorkout>Treino de Sexta-feira</TitleWorkout>
@@ -177,33 +173,19 @@ export function FridayWorkout() {
         </ButtonMore>
       )}
 
-      {addTraining && (
-        <Grid container spacing={2}>
-          {dayTraining && Object.keys(dayTraining).length === 1 && (
-            <Grid item sm={12} md={6}>
-              <ButtonAdd onClick={handleOpenRest}>Descansar</ButtonAdd>
-            </Grid>
-          )}
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenChest}>Peito</ButtonAdd>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenBack}>Costas</ButtonAdd>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenBiceps}>biceps</ButtonAdd>
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenTriceps}>triceps</ButtonAdd>
-          </Grid>
 
-          <Grid item sm={12} md={6}>
-            <ButtonAdd onClick={handleOpenLeg}>Pernas</ButtonAdd>
-          </Grid>
-        </Grid>
+      {addTraining && (
+        <ButtonOpenModals
+          handleOpenRest={handleOpenRest}
+          handleOpenShoulder={handleOpenShoulder}
+          handleOpenChest={handleOpenChest}
+          handleOpenBack={handleOpenBack}
+          handleOpenBiceps={handleOpenBiceps}
+          handleOpenTriceps={handleOpenTriceps}
+          handleOpenLeg={handleOpenLeg}
+          training={training}
+          trainingId={trainingId}
+        />
       )}
 
       <Chest

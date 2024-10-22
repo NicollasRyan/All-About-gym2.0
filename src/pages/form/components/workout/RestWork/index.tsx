@@ -1,5 +1,5 @@
 import { Delete } from "@mui/icons-material";
-import { CardRest, Text, ButtonDelete } from "../../styles";
+import { CardRest, Text, ButtonDelete } from "../styles";
 
 export function RestWork({ workout, handleDelete }: any) {
   return (

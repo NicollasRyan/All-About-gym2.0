@@ -1,9 +1,9 @@
-import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text, ButtonSee, BoxText } from "../../styles";
 import { useState } from "react";
-import { VideoModal } from "../VideoModal";
+import { Delete } from "@mui/icons-material";
+import { VideoModal } from "../../VideoModal";
+import { CardTraining, ButtonDelete, Text, BoxText, ButtonSee } from "../styles";
 
-export function ChestWork({ workout, handleDelete }: any) {
+export function ShoulderWork({ workout, handleDelete }: any) {
   const [open, setOpen] = useState(false);
   const [idLink, setIdLink] = useState("");
 
@@ -17,24 +17,23 @@ export function ChestWork({ workout, handleDelete }: any) {
 
   return (
     <>
-      {workout.BenchPress && (
+      {workout.LateralRaise && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.BenchPress}</Text>
+            <Text>{workout.LateralRaise}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("EZMYCLKuGow");
+                setIdLink("IwWvZ0rlNXs");
               }}
             >
               Ver execução
             </ButtonSee>
-
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.BenchPress) {
-                handleDelete("BenchPress", workout.BenchPress);
+              if (workout.LateralRaise) {
+                handleDelete("LateralRaise", workout.LateralRaise);
               }
             }}
           >
@@ -42,24 +41,24 @@ export function ChestWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
-      {workout.InclineBenchPress && (
+
+      {workout.Development && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.InclineBenchPress}</Text>
+            <Text>{workout.Development}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("RGeSgQmO1EU");
+                setIdLink("eufDL9MmF8A");
               }}
             >
               Ver execução
             </ButtonSee>
-
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.InclineBenchPress) {
-                handleDelete("InclineBenchPress", workout.InclineBenchPress);
+              if (workout.Development) {
+                handleDelete("Development", workout.Development);
               }
             }}
           >
@@ -67,24 +66,27 @@ export function ChestWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
-      {workout.HighPulleyCross && (
+
+      {workout.LateralElevationPulley && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.HighPulleyCross}</Text>
+            <Text>{workout.LateralElevationPulley}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("pdMWt71MPlw");
+                setIdLink("sKPJdvVvHuI");
               }}
             >
               Ver execução
             </ButtonSee>
-
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.HighPulleyCross) {
-                handleDelete("HighPulleyCross", workout.HighPulleyCross);
+              if (workout.LateralElevationPulley) {
+                handleDelete(
+                  "LateralElevationPulley",
+                  workout.LateralElevationPulley
+                );
               }
             }}
           >
@@ -92,24 +94,24 @@ export function ChestWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
-      {workout.CrossMediaPulley && (
+
+      {workout.FrontElevation && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.CrossMediaPulley}</Text>
+            <Text>{workout.FrontElevation}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("i35eFApgyLg");
+                setIdLink("NxSuojHZa8k");
               }}
             >
               Ver execução
             </ButtonSee>
-
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.CrossMediaPulley) {
-                handleDelete("CrossMediaPulley", workout.CrossMediaPulley);
+              if (workout.FrontElevation) {
+                handleDelete("FrontElevation", workout.FrontElevation);
               }
             }}
           >
@@ -117,24 +119,24 @@ export function ChestWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
-      {workout.CrossLowPulley && (
+
+      {workout.FrontPulleyRaise && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.CrossLowPulley}</Text>
+            <Text>{workout.FrontPulleyRaise}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("QUcXXwxa6hE");
+                setIdLink("S7B5LwWrLA0");
               }}
             >
               Ver execução
             </ButtonSee>
-
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.CrossLowPulley) {
-                handleDelete("CrossLowPulley", workout.CrossLowPulley);
+              if (workout.FrontPulleyRaise) {
+                handleDelete("FrontPulleyRaise", workout.FrontPulleyRaise);
               }
             }}
           >
@@ -142,49 +144,24 @@ export function ChestWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
-      {workout.Crucifix && (
+
+      {workout.InvertedCrucifix && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.Crucifix}</Text>
+            <Text>{workout.InvertedCrucifix}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("FzCnfD0gOXo");
+                setIdLink("5HDkxzxe400");
               }}
             >
               Ver execução
             </ButtonSee>
-
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.Crucifix) {
-                handleDelete("Crucifix", workout.Crucifix);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
-        </CardTraining>
-      )}
-      {workout.LeaningCrucifix && (
-        <CardTraining>
-          <BoxText>
-            <Text>{workout.LeaningCrucifix}</Text>
-            <ButtonSee
-              onClick={() => {
-                handleOpen();
-                setIdLink("uy9Xk3SVrms");
-              }}
-            >
-              Ver execução
-            </ButtonSee>
-
-          </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.LeaningCrucifix) {
-                handleDelete("LeaningCrucifix", workout.LeaningCrucifix);
+              if (workout.InvertedCrucifix) {
+                handleDelete("InvertedCrucifix", workout.InvertedCrucifix);
               }
             }}
           >

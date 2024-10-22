@@ -1,15 +1,15 @@
+import { useState } from "react";
 import { Delete } from "@mui/icons-material";
+import { VideoModal } from "../../VideoModal";
 import {
   CardTraining,
   ButtonDelete,
   Text,
   BoxText,
   ButtonSee,
-} from "../../styles";
-import { VideoModal } from "../VideoModal";
-import { useState } from "react";
+} from "../styles";
 
-export function BackWork({ workout, handleDelete }: any) {
+export function LegWork({ workout, handleDelete }: any) {
   const [open, setOpen] = useState(false);
   const [idLink, setIdLink] = useState("");
 
@@ -23,14 +23,14 @@ export function BackWork({ workout, handleDelete }: any) {
 
   return (
     <>
-      {workout.HighPull && (
+      {workout.ExtensionChair && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.HighPull}</Text>
+            <Text>{workout.ExtensionChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("mPmfwbc_svw");
+                setIdLink("el3oHblB5DM");
               }}
             >
               Ver execução
@@ -38,8 +38,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.HighPull) {
-                handleDelete("HighPull", workout.HighPull);
+              if (workout.ExtensionChair) {
+                handleDelete("ExtensionChair", workout.ExtensionChair);
               }
             }}
           >
@@ -48,14 +48,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.SupinatedHighGripPulldown && (
+      {workout.FlexorChair && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.SupinatedHighGripPulldown}</Text>
+            <Text>{workout.FlexorChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("1k0NrtycMA4");
+                setIdLink("Zss6E3VU6X0");
               }}
             >
               Ver execução
@@ -63,11 +63,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.SupinatedHighGripPulldown) {
-                handleDelete(
-                  "SupinatedHighGripPulldown",
-                  workout.SupinatedHighGripPulldown
-                );
+              if (workout.FlexorChair) {
+                handleDelete("FlexorChair", workout.FlexorChair);
               }
             }}
           >
@@ -76,14 +73,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.TrianglePull && (
+      {workout.FlexingTable && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.TrianglePull}</Text>
+            <Text>{workout.FlexingTable}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("uAnrJBnxrZ0");
+                setIdLink("ULaRrQa7c");
               }}
             >
               Ver execução
@@ -91,8 +88,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.TrianglePull) {
-                handleDelete("TrianglePull", workout.TrianglePull);
+              if (workout.FlexingTable) {
+                handleDelete("FlexingTable", workout.FlexingTable);
               }
             }}
           >
@@ -101,14 +98,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.NeutralGripHighPull && (
+      {workout.LegPress && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.NeutralGripHighPull}</Text>
+            <Text>{workout.LegPress}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("outtdvM-9U8");
+                setIdLink("nY8UsiAqwds");
               }}
             >
               Ver execução
@@ -116,11 +113,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.NeutralGripHighPull) {
-                handleDelete(
-                  "NeutralGripHighPull",
-                  workout.NeutralGripHighPull
-                );
+              if (workout.LegPress) {
+                handleDelete("LegPress", workout.LegPress);
               }
             }}
           >
@@ -129,14 +123,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.InclineRow && (
+      {workout.AbductorChair && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.InclineRow}</Text>
+            <Text>{workout.AbductorChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("VJHBEy2duVc");
+                setIdLink("Wf602gn_9zU");
               }}
             >
               Ver execução
@@ -144,8 +138,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.InclineRow) {
-                handleDelete("InclineRow", workout.InclineRow);
+              if (workout.AbductorChair) {
+                handleDelete("AbductorChair", workout.AbductorChair);
               }
             }}
           >
@@ -154,14 +148,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.RowingTriangleMachine && (
+      {workout.AdductorChair && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.RowingTriangleMachine}</Text>
+            <Text>{workout.AdductorChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("f8AVh4VBbos");
+                setIdLink("e2gmqTG1OgQ");
               }}
             >
               Ver execução
@@ -169,11 +163,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.RowingTriangleMachine) {
-                handleDelete(
-                  "RowingTriangleMachine",
-                  workout.RowingTriangleMachine
-                );
+              if (workout.AdductorChair) {
+                handleDelete("AdductorChair", workout.AdductorChair);
               }
             }}
           >
@@ -182,14 +173,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.InclineLeverRow && (
+      {workout.Bugaro && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.InclineLeverRow}</Text>
+            <Text>{workout.Bugaro}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("peMVFQE1BfY");
+                setIdLink("IGf9fR4Y7Iw");
               }}
             >
               Ver execução
@@ -197,8 +188,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.InclineLeverRow) {
-                handleDelete("InclineLeverRow", workout.InclineLeverRow);
+              if (workout.Bugaro) {
+                handleDelete("Bugaro", workout.Bugaro);
               }
             }}
           >
@@ -207,14 +198,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.RowingMachine && (
+      {workout.Squat && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.RowingMachine}</Text>
+            <Text>{workout.Squat}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("QyvIEdEHzHc");
+                setIdLink("zgk71dUUt0Y");
               }}
             >
               Ver execução
@@ -222,8 +213,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.RowingMachine) {
-                handleDelete("RowingMachine", workout.RowingMachine);
+              if (workout.Squat) {
+                handleDelete("Squat", workout.Squat);
               }
             }}
           >
@@ -232,14 +223,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.InclineRowSupinatedGrip && (
+      {workout.Hack && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.InclineRowSupinatedGrip}</Text>
+            <Text>{workout.Hack}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("0BfB6WHRks8");
+                setIdLink("Whp712OHPl8");
               }}
             >
               Ver execução
@@ -247,11 +238,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.InclineRowSupinatedGrip) {
-                handleDelete(
-                  "InclineRowSupinatedGrip",
-                  workout.InclineRowSupinatedGrip
-                );
+              if (workout.Hack) {
+                handleDelete("Hack", workout.Hack);
               }
             }}
           >
@@ -260,14 +248,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.RowingSupinatedGripMachine && (
+      {workout.Stiff && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.RowingSupinatedGripMachine}</Text>
+            <Text>{workout.Stiff}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("xly8A8fUhXo");
+                setIdLink("u1E3_u2gJYE");
               }}
             >
               Ver execução
@@ -275,11 +263,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.RowingSupinatedGripMachine) {
-                handleDelete(
-                  "RowingSupinatedGripMachine",
-                  workout.RowingSupinatedGripMachine
-                );
+              if (workout.Stiff) {
+                handleDelete("Stiff", workout.Stiff);
               }
             }}
           >
@@ -288,14 +273,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.Saw && (
+      {workout.Earth && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.Saw}</Text>
+            <Text>{workout.Earth}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("EUisRaNkCd4");
+                setIdLink("50AkPBZwACQ");
               }}
             >
               Ver execução
@@ -303,8 +288,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.Saw) {
-                handleDelete("Saw", workout.Saw);
+              if (workout.Earth) {
+                handleDelete("Earth", workout.Earth);
               }
             }}
           >
@@ -313,14 +298,14 @@ export function BackWork({ workout, handleDelete }: any) {
         </CardTraining>
       )}
 
-      {workout.Pulldown && (
+      {workout.Lunge && (
         <CardTraining>
           <BoxText>
-            <Text>{workout.Pulldown}</Text>
+            <Text>{workout.Lunge}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
-                setIdLink("v6-QIOY0nW0");
+                setIdLink("LD6dydg2bxc");
               }}
             >
               Ver execução
@@ -328,8 +313,33 @@ export function BackWork({ workout, handleDelete }: any) {
           </BoxText>
           <ButtonDelete
             onClick={() => {
-              if (workout.Pulldown) {
-                handleDelete("Pulldown", workout.Pulldown);
+              if (workout.Lunge) {
+                handleDelete("Lunge", workout.Lunge);
+              }
+            }}
+          >
+            <Delete />
+          </ButtonDelete>
+        </CardTraining>
+      )}
+
+      {workout.PelvicLift && (
+        <CardTraining>
+          <BoxText>
+            <Text>{workout.PelvicLift}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("ptK0azwOXwM");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
+          <ButtonDelete
+            onClick={() => {
+              if (workout.PelvicLift) {
+                handleDelete("PelvicLift", workout.PelvicLift);
               }
             }}
           >

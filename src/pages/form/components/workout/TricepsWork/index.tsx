@@ -1,7 +1,7 @@
-import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text, BoxText, ButtonSee } from "../../styles";
-import { VideoModal } from "../VideoModal";
 import { useState } from "react";
+import { Delete } from "@mui/icons-material";
+import { VideoModal } from "../../VideoModal";
+import { CardTraining, ButtonDelete, Text, BoxText, ButtonSee } from "../styles";
 
 export function TricepsWork({ workout, handleDelete }: any) {
   const [open, setOpen] = useState(false);
