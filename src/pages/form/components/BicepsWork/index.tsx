@@ -1,12 +1,41 @@
 import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text } from "../../styles";
+import {
+  CardTraining,
+  ButtonDelete,
+  Text,
+  BoxText,
+  ButtonSee,
+} from "../../styles";
+import { useState } from "react";
+import { VideoModal } from "../VideoModal";
 
 export function BicepsWork({ workout, handleDelete }: any) {
+  const [open, setOpen] = useState(false);
+  const [idLink, setIdLink] = useState("");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {workout.DumbbellCurl && (
         <CardTraining>
-          <Text>{workout.DumbbellCurl}</Text>
+          <BoxText>
+            <Text>{workout.DumbbellCurl}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("oZi_IESyxnA");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.DumbbellCurl) {
@@ -21,7 +50,17 @@ export function BicepsWork({ workout, handleDelete }: any) {
 
       {workout.WBarCurl && (
         <CardTraining>
-          <Text>{workout.WBarCurl}</Text>
+          <BoxText>
+            <Text>{workout.WBarCurl}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("V6UEDzY51gY");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.WBarCurl) {
@@ -36,7 +75,17 @@ export function BicepsWork({ workout, handleDelete }: any) {
 
       {workout.HammerThread && (
         <CardTraining>
-          <Text>{workout.HammerThread}</Text>
+          <BoxText>
+            <Text>{workout.HammerThread}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("0qkQy8V2FC0");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.HammerThread) {
@@ -51,7 +100,17 @@ export function BicepsWork({ workout, handleDelete }: any) {
 
       {workout.InclineDumbbellCurl && (
         <CardTraining>
-          <Text>{workout.InclineDumbbellCurl}</Text>
+          <BoxText>
+            <Text>{workout.InclineDumbbellCurl}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("IoxqjVqb9Cg");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.InclineDumbbellCurl) {
@@ -69,7 +128,17 @@ export function BicepsWork({ workout, handleDelete }: any) {
 
       {workout.PreacherBench && (
         <CardTraining>
-          <Text>{workout.PreacherBench}</Text>
+          <BoxText>
+            <Text>{workout.PreacherBench}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("Kh4G5N48EO8");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.PreacherBench) {
@@ -81,6 +150,7 @@ export function BicepsWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
+      <VideoModal open={open} onClose={handleClose} idLink={idLink} />
     </>
   );
 }

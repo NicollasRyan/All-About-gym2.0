@@ -1,12 +1,35 @@
 import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text } from "../../styles";
+import { CardTraining, ButtonDelete, Text, BoxText, ButtonSee } from "../../styles";
+import { useState } from "react";
+import { VideoModal } from "../VideoModal";
 
 export function ShoulderWork({ workout, handleDelete }: any) {
+  const [open, setOpen] = useState(false);
+  const [idLink, setIdLink] = useState("");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {workout.LateralRaise && (
         <CardTraining>
-          <Text>{workout.LateralRaise}</Text>
+          <BoxText>
+            <Text>{workout.LateralRaise}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("IwWvZ0rlNXs");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.LateralRaise) {
@@ -21,7 +44,17 @@ export function ShoulderWork({ workout, handleDelete }: any) {
 
       {workout.Development && (
         <CardTraining>
-          <Text>{workout.Development}</Text>
+          <BoxText>
+            <Text>{workout.Development}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("eufDL9MmF8A");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Development) {
@@ -36,7 +69,17 @@ export function ShoulderWork({ workout, handleDelete }: any) {
 
       {workout.LateralElevationPulley && (
         <CardTraining>
-          <Text>{workout.LateralElevationPulley}</Text>
+          <BoxText>
+            <Text>{workout.LateralElevationPulley}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("sKPJdvVvHuI");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.LateralElevationPulley) {
@@ -54,7 +97,17 @@ export function ShoulderWork({ workout, handleDelete }: any) {
 
       {workout.FrontElevation && (
         <CardTraining>
-          <Text>{workout.FrontElevation}</Text>
+          <BoxText>
+            <Text>{workout.FrontElevation}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("NxSuojHZa8k");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.FrontElevation) {
@@ -69,7 +122,17 @@ export function ShoulderWork({ workout, handleDelete }: any) {
 
       {workout.FrontPulleyRaise && (
         <CardTraining>
-          <Text>{workout.FrontPulleyRaise}</Text>
+          <BoxText>
+            <Text>{workout.FrontPulleyRaise}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("S7B5LwWrLA0");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.FrontPulleyRaise) {
@@ -84,7 +147,17 @@ export function ShoulderWork({ workout, handleDelete }: any) {
 
       {workout.InvertedCrucifix && (
         <CardTraining>
-          <Text>{workout.InvertedCrucifix}</Text>
+          <BoxText>
+            <Text>{workout.InvertedCrucifix}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("5HDkxzxe400");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.InvertedCrucifix) {
@@ -96,6 +169,7 @@ export function ShoulderWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
+      <VideoModal open={open} onClose={handleClose} idLink={idLink} />
     </>
   );
 }

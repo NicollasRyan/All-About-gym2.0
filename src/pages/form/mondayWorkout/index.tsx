@@ -5,7 +5,6 @@ import {
   ButtonAdd,
   ButtonMore,
   TitleWorkout,
-  TextMotivational,
 } from "../styles";
 import {
   doc,
@@ -204,11 +203,6 @@ export function MondayWorkout() {
           </Grid>
         </Grid>
       )}
-
-      <TextMotivational>
-        A verdadeira luta não é contra os outros, mas contra suas próprias
-        limitações.
-      </TextMotivational>
 
       <Chest
         openChest={openChest}

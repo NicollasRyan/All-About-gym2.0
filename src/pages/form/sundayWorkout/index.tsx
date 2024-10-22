@@ -13,7 +13,6 @@ import {
   ButtonAdd,
   ButtonMore,
   TitleWorkout,
-  TextMotivational,
 } from "../styles";
 
 import { Chest } from "../components/Modals/Chest";
@@ -204,8 +203,6 @@ export function SundayWorkout() {
           </Grid>
         </Grid>
       )}
-
-      <TextMotivational>Seu único limite é você mesmo.</TextMotivational>
 
       <Chest
         openChest={openChest}

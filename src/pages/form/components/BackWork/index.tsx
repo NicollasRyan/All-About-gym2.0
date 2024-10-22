@@ -1,12 +1,41 @@
 import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text } from "../../styles";
+import {
+  CardTraining,
+  ButtonDelete,
+  Text,
+  BoxText,
+  ButtonSee,
+} from "../../styles";
+import { VideoModal } from "../VideoModal";
+import { useState } from "react";
 
 export function BackWork({ workout, handleDelete }: any) {
+  const [open, setOpen] = useState(false);
+  const [idLink, setIdLink] = useState("");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {workout.HighPull && (
         <CardTraining>
-          <Text>{workout.HighPull}</Text>
+          <BoxText>
+            <Text>{workout.HighPull}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("mPmfwbc_svw");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.HighPull) {
@@ -21,7 +50,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.SupinatedHighGripPulldown && (
         <CardTraining>
-          <Text>{workout.SupinatedHighGripPulldown}</Text>
+          <BoxText>
+            <Text>{workout.SupinatedHighGripPulldown}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("1k0NrtycMA4");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.SupinatedHighGripPulldown) {
@@ -39,7 +78,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.TrianglePull && (
         <CardTraining>
-          <Text>{workout.TrianglePull}</Text>
+          <BoxText>
+            <Text>{workout.TrianglePull}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("uAnrJBnxrZ0");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.TrianglePull) {
@@ -54,7 +103,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.NeutralGripHighPull && (
         <CardTraining>
-          <Text>{workout.NeutralGripHighPull}</Text>
+          <BoxText>
+            <Text>{workout.NeutralGripHighPull}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("outtdvM-9U8");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.NeutralGripHighPull) {
@@ -72,7 +131,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.InclineRow && (
         <CardTraining>
-          <Text>{workout.InclineRow}</Text>
+          <BoxText>
+            <Text>{workout.InclineRow}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("VJHBEy2duVc");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.InclineRow) {
@@ -87,7 +156,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.RowingTriangleMachine && (
         <CardTraining>
-          <Text>{workout.RowingTriangleMachine}</Text>
+          <BoxText>
+            <Text>{workout.RowingTriangleMachine}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("f8AVh4VBbos");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.RowingTriangleMachine) {
@@ -105,7 +184,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.InclineLeverRow && (
         <CardTraining>
-          <Text>{workout.InclineLeverRow}</Text>
+          <BoxText>
+            <Text>{workout.InclineLeverRow}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("peMVFQE1BfY");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.InclineLeverRow) {
@@ -120,7 +209,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.RowingMachine && (
         <CardTraining>
-          <Text>{workout.RowingMachine}</Text>
+          <BoxText>
+            <Text>{workout.RowingMachine}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("QyvIEdEHzHc");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.RowingMachine) {
@@ -135,7 +234,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.InclineRowSupinatedGrip && (
         <CardTraining>
-          <Text>{workout.InclineRowSupinatedGrip}</Text>
+          <BoxText>
+            <Text>{workout.InclineRowSupinatedGrip}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("0BfB6WHRks8");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.InclineRowSupinatedGrip) {
@@ -153,7 +262,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.RowingSupinatedGripMachine && (
         <CardTraining>
-          <Text>{workout.RowingSupinatedGripMachine}</Text>
+          <BoxText>
+            <Text>{workout.RowingSupinatedGripMachine}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("xly8A8fUhXo");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.RowingSupinatedGripMachine) {
@@ -171,7 +290,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.Saw && (
         <CardTraining>
-          <Text>{workout.Saw}</Text>
+          <BoxText>
+            <Text>{workout.Saw}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("EUisRaNkCd4");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Saw) {
@@ -186,7 +315,17 @@ export function BackWork({ workout, handleDelete }: any) {
 
       {workout.Pulldown && (
         <CardTraining>
-          <Text>{workout.Pulldown}</Text>
+          <BoxText>
+            <Text>{workout.Pulldown}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("v6-QIOY0nW0");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Pulldown) {
@@ -198,6 +337,8 @@ export function BackWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
+
+      <VideoModal open={open} onClose={handleClose} idLink={idLink} />
     </>
   );
 }

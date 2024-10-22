@@ -13,7 +13,6 @@ import {
   ButtonAdd,
   ButtonMore,
   TitleWorkout,
-  TextMotivational,
 } from "../styles";
 
 import { Chest } from "../components/Modals/Chest";
@@ -206,8 +205,6 @@ export function FridayWorkout() {
           </Grid>
         </Grid>
       )}
-
-      <TextMotivational>Resultados não vêm do que você faz ocasionalmente, mas do que você faz consistentemente.</TextMotivational>
 
       <Chest
         openChest={openChest}

@@ -69,24 +69,6 @@ export function Chest({ openChest, handleClose, handleTraining }: FunctioType) {
           </GridItem>
           <GridItem item xs={6}>
             <Controller
-              name="DeclineBenchPress"
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <>
-                  <CheckTraning
-                    color="secondary"
-                    onChange={(e) =>
-                      onChange(e.target.checked ? "Supino Declinado" : "")
-                    }
-                    checked={value === "Supino Declinado"}
-                  />
-                </>
-              )}
-            />
-            <LabelTraning>Supino Declinado</LabelTraning>
-          </GridItem>
-          <GridItem item xs={6}>
-            <Controller
               name="HighPulleyCross"
               control={control}
               render={({ field: { onChange, value } }) => (

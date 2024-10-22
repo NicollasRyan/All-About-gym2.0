@@ -1,12 +1,35 @@
 import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text } from "../../styles";
+import { CardTraining, ButtonDelete, Text, BoxText, ButtonSee } from "../../styles";
+import { VideoModal } from "../VideoModal";
+import { useState } from "react";
 
 export function TricepsWork({ workout, handleDelete }: any) {
+  const [open, setOpen] = useState(false);
+  const [idLink, setIdLink] = useState("");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {workout.TricepsBar && (
         <CardTraining>
-          <Text>{workout.TricepsBar}</Text>
+          <BoxText>
+            <Text>{workout.TricepsBar}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("rDjhqg_cZWM");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.TricepsBar) {
@@ -21,7 +44,17 @@ export function TricepsWork({ workout, handleDelete }: any) {
 
       {workout.TricepsRope && (
         <CardTraining>
-          <Text>{workout.TricepsRope}</Text>
+          <BoxText>
+            <Text>{workout.TricepsRope}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("sTaIlf8WGjg");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.TricepsRope) {
@@ -36,7 +69,17 @@ export function TricepsWork({ workout, handleDelete }: any) {
 
       {workout.French && (
         <CardTraining>
-          <Text>{workout.French}</Text>
+          <BoxText>
+            <Text>{workout.French}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("Otc5BgXa-l8");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.French) {
@@ -51,7 +94,17 @@ export function TricepsWork({ workout, handleDelete }: any) {
 
       {workout.TricepsForehead && (
         <CardTraining>
-          <Text>{workout.TricepsForehead}</Text>
+          <BoxText>
+            <Text>{workout.TricepsForehead}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("VakpIeaaeXA");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.TricepsForehead) {
@@ -66,7 +119,17 @@ export function TricepsWork({ workout, handleDelete }: any) {
 
       {workout.TricepsBench && (
         <CardTraining>
-          <Text>{workout.TricepsBench}</Text>
+          <BoxText>
+            <Text>{workout.TricepsBench}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("EPNa4oCa8KY");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.TricepsBench) {
@@ -78,6 +141,7 @@ export function TricepsWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
+      <VideoModal open={open} onClose={handleClose} idLink={idLink} />
     </>
   );
 }

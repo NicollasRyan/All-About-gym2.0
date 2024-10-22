@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Box, Button, Typography } from "@mui/material";
+import styled from '@emotion/styled';
+import {Box, Button, Typography} from '@mui/material';
 
 export const TitleWorkout = styled(Typography)`
   padding: 25px 0;
@@ -8,6 +8,21 @@ export const TitleWorkout = styled(Typography)`
 `;
 
 export const BoxCard = styled(Box)``;
+
+export const BoxText = styled(Box)`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const ButtonSee = styled(Button)`
+  margin-left: 45px;
+`;
 
 export const CardTraining = styled(Box)`
   display: flex;
@@ -84,7 +99,7 @@ export const TextMotivational = styled(Typography)`
   padding: 25px 70px;
   font-size: 45px;
   font-weight: bold;
-  font-family: "Permanent Marker", cursive;
+  font-family: 'Permanent Marker', cursive;
 
   margin: 93px 0 93px;
   border: 1px #000 solid;

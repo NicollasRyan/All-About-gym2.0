@@ -13,7 +13,6 @@ import {
   ButtonAdd,
   ButtonMore,
   TitleWorkout,
-  TextMotivational,
 } from "../styles";
 
 import { Chest } from "../components/Modals/Chest";
@@ -202,10 +201,6 @@ export function WednesdayWorkout() {
           </Grid>
         </Grid>
       )}
-
-      <TextMotivational>
-        A única mágica que você precisa é a sua determinação.
-      </TextMotivational>
 
       <Chest
         openChest={openChest}

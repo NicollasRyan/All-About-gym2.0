@@ -1,12 +1,41 @@
 import { Delete } from "@mui/icons-material";
-import { CardTraining, ButtonDelete, Text } from "../../styles";
+import {
+  CardTraining,
+  ButtonDelete,
+  Text,
+  BoxText,
+  ButtonSee,
+} from "../../styles";
+import { useState } from "react";
+import { VideoModal } from "../VideoModal";
 
 export function LegWork({ workout, handleDelete }: any) {
+  const [open, setOpen] = useState(false);
+  const [idLink, setIdLink] = useState("");
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
       {workout.ExtensionChair && (
         <CardTraining>
-          <Text>{workout.ExtensionChair}</Text>
+          <BoxText>
+            <Text>{workout.ExtensionChair}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("el3oHblB5DM");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.ExtensionChair) {
@@ -21,7 +50,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.FlexorChair && (
         <CardTraining>
-          <Text>{workout.FlexorChair}</Text>
+          <BoxText>
+            <Text>{workout.FlexorChair}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("Zss6E3VU6X0");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.FlexorChair) {
@@ -36,7 +75,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.FlexingTable && (
         <CardTraining>
-          <Text>{workout.FlexingTable}</Text>
+          <BoxText>
+            <Text>{workout.FlexingTable}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("ULaRrQa7c");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.FlexingTable) {
@@ -51,7 +100,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.LegPress && (
         <CardTraining>
-          <Text>{workout.LegPress}</Text>
+          <BoxText>
+            <Text>{workout.LegPress}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("nY8UsiAqwds");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.LegPress) {
@@ -66,7 +125,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.AbductorChair && (
         <CardTraining>
-          <Text>{workout.AbductorChair}</Text>
+          <BoxText>
+            <Text>{workout.AbductorChair}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("Wf602gn_9zU");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.AbductorChair) {
@@ -81,7 +150,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.AdductorChair && (
         <CardTraining>
-          <Text>{workout.AdductorChair}</Text>
+          <BoxText>
+            <Text>{workout.AdductorChair}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("e2gmqTG1OgQ");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.AdductorChair) {
@@ -96,7 +175,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.Bugaro && (
         <CardTraining>
-          <Text>{workout.Bugaro}</Text>
+          <BoxText>
+            <Text>{workout.Bugaro}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("IGf9fR4Y7Iw");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Bugaro) {
@@ -111,7 +200,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.Squat && (
         <CardTraining>
-          <Text>{workout.Squat}</Text>
+          <BoxText>
+            <Text>{workout.Squat}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("zgk71dUUt0Y");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Squat) {
@@ -126,7 +225,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.Hack && (
         <CardTraining>
-          <Text>{workout.Hack}</Text>
+          <BoxText>
+            <Text>{workout.Hack}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("Whp712OHPl8");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Hack) {
@@ -141,7 +250,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.Stiff && (
         <CardTraining>
-          <Text>{workout.Stiff}</Text>
+          <BoxText>
+            <Text>{workout.Stiff}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("u1E3_u2gJYE");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Stiff) {
@@ -156,7 +275,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.Earth && (
         <CardTraining>
-          <Text>{workout.Earth}</Text>
+          <BoxText>
+            <Text>{workout.Earth}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("50AkPBZwACQ");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Earth) {
@@ -171,7 +300,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.Lunge && (
         <CardTraining>
-          <Text>{workout.Lunge}</Text>
+          <BoxText>
+            <Text>{workout.Lunge}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("LD6dydg2bxc");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.Lunge) {
@@ -186,7 +325,17 @@ export function LegWork({ workout, handleDelete }: any) {
 
       {workout.PelvicLift && (
         <CardTraining>
-          <Text>{workout.PelvicLift}</Text>
+          <BoxText>
+            <Text>{workout.PelvicLift}</Text>
+            <ButtonSee
+              onClick={() => {
+                handleOpen();
+                setIdLink("ptK0azwOXwM");
+              }}
+            >
+              Ver execução
+            </ButtonSee>
+          </BoxText>
           <ButtonDelete
             onClick={() => {
               if (workout.PelvicLift) {
@@ -198,6 +347,8 @@ export function LegWork({ workout, handleDelete }: any) {
           </ButtonDelete>
         </CardTraining>
       )}
+
+      <VideoModal open={open} onClose={handleClose} idLink={idLink} />
     </>
   );
 }
