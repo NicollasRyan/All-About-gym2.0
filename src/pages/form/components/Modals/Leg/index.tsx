@@ -18,16 +18,21 @@ type FunctioType = {
 };
 
 export function Leg({ openLeg, handleClose, handleTraining }: FunctioType) {
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data, "<=");
     handleTraining(data);
-    handleClose();
+    onClose();
   };
 
+  const onClose = () => {
+    reset();
+    handleClose();
+  }
+
   return (
-    <Modal open={openLeg} onClose={handleClose}>
+    <Modal open={openLeg} onClose={onClose}>
       <BoxModal>
         <TitleModal>Treino de Perna</TitleModal>
         <BoxSelect container spacing={2}>

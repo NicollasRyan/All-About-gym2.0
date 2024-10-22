@@ -22,6 +22,10 @@ export const BoxText = styled(Box)`
 
 export const ButtonSee = styled(Button)`
   margin-left: 45px;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
 `;
 
 export const CardTraining = styled(Box)`
@@ -49,6 +53,10 @@ export const CardRest = styled(Box)`
   background: #313234;
 
   padding: 50px;
+
+  @media (max-width: 600px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const Text = styled(Typography)`

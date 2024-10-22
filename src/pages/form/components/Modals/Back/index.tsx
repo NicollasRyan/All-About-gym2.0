@@ -18,16 +18,21 @@ type FunctioType = {
 };
 
 export function Back({ openBack, handleClose, handleTraining }: FunctioType) {
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data, "<=");
     handleTraining(data);
-    handleClose();
+    onClose();
   };
 
+  const onClose = () => {
+    reset();
+    handleClose();
+  }
+
   return (
-    <Modal open={openBack} onClose={handleClose}>
+    <Modal open={openBack} onClose={onClose}>
       <BoxModal>
         <TitleModal>Treino de Costas</TitleModal>
         <BoxSelect container spacing={2}>

@@ -9,17 +9,21 @@ type FunctioType = {
 };
 
 export function Rest({ openRest, handleClose, handleTraining }: FunctioType) {
-  const { handleSubmit } = useForm();
+  const { handleSubmit, reset } = useForm();
 
   const onSubmit = (data: any) => {
-    data.rest = "Dia de Descanço";
     console.log(data, "<=");
     handleTraining(data);
-    handleClose();
+    onClose();
   };
 
+  const onClose = () => {
+    reset();
+    handleClose();
+  }
+
   return (
-    <Modal open={openRest} onClose={handleClose}>
+    <Modal open={openRest} onClose={onClose}>
       <BoxModal>
         <TitleModal>Você quer Descansar nesse Dia?</TitleModal>
         <BoxButtons>

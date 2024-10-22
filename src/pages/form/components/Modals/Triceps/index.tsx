@@ -22,16 +22,21 @@ export function Triceps({
   handleClose,
   handleTraining,
 }: FunctioType) {
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm();
 
   const onSubmit = (data: any) => {
     console.log(data, "<=");
     handleTraining(data);
-    handleClose();
+    onClose();
   };
 
+  const onClose = () => {
+    reset();
+    handleClose();
+  }
+
   return (
-    <Modal open={openTriceps} onClose={handleClose}>
+    <Modal open={openTriceps} onClose={onClose}>
       <BoxModal>
         <TitleModal>Treino de Triceps</TitleModal>
         <BoxSelect container spacing={2}>
