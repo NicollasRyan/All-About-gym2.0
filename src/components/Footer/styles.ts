@@ -4,11 +4,15 @@ import { Box, Typography } from "@mui/material";
 export const BoxFooter = styled(Box)`
   position: relative;
   margin-top: 30px;
-  padding: 50px 0 50px;
+  padding: 120px 0 120px;
   background: #4f4f4f;
   color: #fff;
   bottom: 0;
   margin-top: auto;
+
+  @media (max-width: 600px) {
+    padding: 50px 0 50px; 
+  }
 `;
 
 export const TitleLogo = styled(Typography)`  
