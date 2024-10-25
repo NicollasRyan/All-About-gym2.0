@@ -6,6 +6,7 @@ import {
   getDoc,
   updateDoc,
   deleteField,
+  deleteDoc,
 } from "firebase/firestore";
 
 import {
@@ -146,6 +147,28 @@ export function FridayWorkout() {
     }
   };
 
+  const handleAddRest = async (data: any) => {
+    const user = auth.currentUser;
+    if (!user) {
+      console.error("Usuário não autenticado");
+      return;
+    }
+    const userEmail = user.email ?? "";
+
+    const docRef = doc(db, "user", userEmail, "trainings", trainingId);
+
+    try {
+      await deleteDoc(docRef);
+      console.log("Documento de quarta-feira apagado");
+
+      await setDoc(docRef, data);
+      console.log("Descanso adicionado com sucesso");
+
+    } catch (error) {
+      console.error("Erro ao adicionar descanso:", error);
+    }
+  };
+
   const handleMore = () => {
     if (addTraining === false) {
       setAddTraining(true);
@@ -174,7 +197,6 @@ export function FridayWorkout() {
           {addTraining ? "Cancelar" : "Adiconar exercios"}
         </ButtonMore>
       )}
-
 
       {addTraining && (
         <ButtonOpenModals
@@ -224,7 +246,7 @@ export function FridayWorkout() {
       <Rest
         openRest={openRest}
         handleClose={handleCloseRest}
-        handleTraining={onSubmit}
+        handleTraining={handleAddRest}
       />
     </Container>
   );

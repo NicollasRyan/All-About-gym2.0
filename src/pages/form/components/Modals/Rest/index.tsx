@@ -12,8 +12,8 @@ export function Rest({ openRest, handleClose, handleTraining }: FunctioType) {
   const { handleSubmit, reset } = useForm();
 
   const onSubmit = (data: any) => {
-    console.log(data, "<=");
-    handleTraining(data);
+    const updatedData = { ...data, rest: "Descansar" }
+    console.log(updatedData, "<=");
     onClose();
   };
 

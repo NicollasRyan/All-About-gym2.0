@@ -2,17 +2,11 @@ import { Grid } from "@mui/material";
 import { ButtonAdd } from "../../styles";
 
 export function ButtonOpenModals({ handleOpenRest, handleOpenShoulder, handleOpenChest, handleOpenBack, handleOpenBiceps, handleOpenTriceps, handleOpenLeg, training, trainingId }: any) {
-
-    const dayTraining = training.find(
-        (trainingItem: any) => trainingItem.id === trainingId
-    );
     return (
         <Grid container spacing={2} sx={{ marginBottom: "25px" }}>
-            {dayTraining && Object.keys(dayTraining).length === 1 && (
-                <Grid item sm={12} md={6}>
-                    <ButtonAdd onClick={handleOpenRest}>Descansar</ButtonAdd>
-                </Grid>
-            )}
+            <Grid item sm={12} md={6}>
+                <ButtonAdd onClick={handleOpenRest}>Descansar</ButtonAdd>
+            </Grid>
             <Grid item sm={12} md={6}>
                 <ButtonAdd onClick={handleOpenShoulder}>ombro</ButtonAdd>
             </Grid>
