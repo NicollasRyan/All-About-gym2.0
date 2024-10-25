@@ -58,12 +58,13 @@ export function Register() {
         data.email,
         data.password
       );
-      
+
       await updateProfile(userCredential.user, {
         displayName: `${data.first_name} ${data.last_name}`,
       });
+
       navigate("/login");
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const handleClickShowPassword = () => {

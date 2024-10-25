@@ -70,6 +70,10 @@ export function FridayWorkout() {
   const trainingId = "friday_training";
   console.log("Training:", training);
 
+  useEffect(() => {
+    fetchTrainingDocuments();
+  }, [trainingId]);
+
   const fetchTrainingDocuments = async () => {
     const user = auth.currentUser;
     if (!user) {
@@ -77,8 +81,10 @@ export function FridayWorkout() {
       return;
     }
 
+    const userEmail = user.email ?? ""
+
     try {
-      const docRef = doc(db, "user", user.uid, "trainings", trainingId);
+      const docRef = doc(db, "user", userEmail, "trainings", trainingId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -92,26 +98,25 @@ export function FridayWorkout() {
     }
   };
 
-  useEffect(() => {
-    fetchTrainingDocuments();
-  }, [trainingId]);
 
-  const handleDelete = async (field: string, value: string) => {
+
+  const handleDelete = async (field: string) => {
     const user = auth.currentUser;
     if (!user) {
       console.error("Usuário não autenticado");
       return;
     }
 
+    const userEmail = user.email ?? ""
+
     try {
-      const trainingDocRef = doc(db, "user", user.uid, "trainings", trainingId);
+      const trainingDocRef = doc(db, "user", userEmail, "trainings", trainingId);
       await updateDoc(trainingDocRef, {
         [field]: deleteField(),
       });
-
       fetchTrainingDocuments();
     } catch (error) {
-      console.error("Erro ao <Delete /> campo:", error);
+      console.error("Erro ao deletar campo:", error);
     }
   };
 
@@ -122,11 +127,11 @@ export function FridayWorkout() {
       return;
     }
 
-    const userUid = user.uid;
+    const userEmail = user.email ?? "";
     const userForm = { ...data };
     const cleanedUserForm = removeUndefinedFields(userForm);
 
-    const docRef = doc(db, "user", userUid, "trainings", trainingId);
+    const docRef = doc(db, "user", userEmail, "trainings", trainingId);
 
     setAddTraining(false);
 

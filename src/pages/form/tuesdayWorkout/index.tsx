@@ -69,6 +69,10 @@ export function TuesdayWorkout() {
 
   const trainingId = "tuesday_training";
 
+  useEffect(() => {
+    fetchTrainingDocuments();
+  }, [trainingId]);
+
   const fetchTrainingDocuments = async () => {
     const user = auth.currentUser;
     if (!user) {
@@ -76,8 +80,10 @@ export function TuesdayWorkout() {
       return;
     }
 
+    const userEmail = user.email ?? ""
+
     try {
-      const docRef = doc(db, "user", user.uid, "trainings", trainingId);
+      const docRef = doc(db, "user", userEmail, "trainings", trainingId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -91,10 +97,6 @@ export function TuesdayWorkout() {
     }
   };
 
-  useEffect(() => {
-    fetchTrainingDocuments();
-  }, [trainingId]);
-
   const handleDelete = async (field: string) => {
     const user = auth.currentUser;
     if (!user) {
@@ -102,8 +104,10 @@ export function TuesdayWorkout() {
       return;
     }
 
+    const userEmail = user.email ?? ""
+
     try {
-      const trainingDocRef = doc(db, "user", user.uid, "trainings", trainingId);
+      const trainingDocRef = doc(db, "user", userEmail, "trainings", trainingId);
       await updateDoc(trainingDocRef, {
         [field]: deleteField(),
       });
@@ -120,11 +124,11 @@ export function TuesdayWorkout() {
       return;
     }
 
-    const userUid = user.uid;
+    const userEmail = user.email ?? "";
     const userForm = { ...data };
     const cleanedUserForm = removeUndefinedFields(userForm);
 
-    const docRef = doc(db, "user", userUid, "trainings", trainingId);
+    const docRef = doc(db, "user", userEmail, "trainings", trainingId);
 
     setAddTraining(false);
 
