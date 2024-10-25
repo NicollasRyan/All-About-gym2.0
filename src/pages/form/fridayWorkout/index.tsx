@@ -68,7 +68,6 @@ export function FridayWorkout() {
   const handleCloseLeg = () => setOpenLeg(false);
 
   const trainingId = "friday_training";
-  console.log("Training:", training);
 
   useEffect(() => {
     fetchTrainingDocuments();
@@ -97,8 +96,6 @@ export function FridayWorkout() {
       console.error("Erro ao obter documento:", error);
     }
   };
-
-
 
   const handleDelete = async (field: string) => {
     const user = auth.currentUser;
