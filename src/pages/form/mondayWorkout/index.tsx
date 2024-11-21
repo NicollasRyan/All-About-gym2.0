@@ -80,10 +80,8 @@ export function MondayWorkout() {
       return;
     }
 
-    const userEmail = user.email ?? ""
-
     try {
-      const docRef = doc(db, "user", userEmail, "trainings", trainingId);
+      const docRef = doc(db, "user", user.uid, "trainings", trainingId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -104,10 +102,9 @@ export function MondayWorkout() {
       return;
     }
 
-    const userEmail = user.email ?? ""
 
     try {
-      const trainingDocRef = doc(db, "user", userEmail, "trainings", trainingId);
+      const trainingDocRef = doc(db, "user", user.uid, "trainings", trainingId);
       await updateDoc(trainingDocRef, {
         [field]: deleteField(),
       });
@@ -124,11 +121,10 @@ export function MondayWorkout() {
       return;
     }
 
-    const userEmail = user.email ?? "";
     const userForm = { ...data };
     const cleanedUserForm = removeUndefinedFields(userForm);
 
-    const docRef = doc(db, "user", userEmail, "trainings", trainingId);
+    const docRef = doc(db, "user", user.uid, "trainings", trainingId);
 
     setAddTraining(false);
 
@@ -152,9 +148,8 @@ export function MondayWorkout() {
       console.error("Usuário não autenticado");
       return;
     }
-    const userEmail = user.email ?? "";
 
-    const docRef = doc(db, "user", userEmail, "trainings", trainingId);
+    const docRef = doc(db, "user", user.uid, "trainings", trainingId);
 
     try {
       await deleteDoc(docRef);
