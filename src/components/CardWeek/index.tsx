@@ -46,10 +46,9 @@ export function CardWeek({ day, link }: CardType) {
         console.error("Usuário não autenticado");
         return;
       }
-      const userEmail = user.email ?? "";
 
       try {
-        const docRef = doc(db, "user", userEmail, "trainings", trainingId);
+        const docRef = doc(db, "user", user.uid, "trainings", collectionName);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {

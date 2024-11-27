@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 
 export const CardContainer = styled(Box)`
+  color: #f7f7f7;
   background: #777777;
   border-radius: 8px;
   padding: 25px;
@@ -12,14 +13,13 @@ export const CardContainer = styled(Box)`
   cursor: pointer;
 
   &:hover {
-    color: #f7f7f7;
     box-shadow: rgba(240, 46, 170, 0.4) -5px 5px,
       rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px,
       rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
   }
 
   @media (max-width: 600px) {
-  width: 320px;
+    width: 320px;
   }
 `;
 

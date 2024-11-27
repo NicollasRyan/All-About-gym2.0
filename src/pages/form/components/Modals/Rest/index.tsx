@@ -13,7 +13,7 @@ export function Rest({ openRest, handleClose, handleTraining }: FunctioType) {
 
   const onSubmit = (data: any) => {
     const updatedData = { ...data, rest: "Descansar" }
-    console.log(updatedData, "<=");
+    handleTraining(updatedData);
     onClose();
   };
 

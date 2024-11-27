@@ -4,6 +4,8 @@ export const BoxHeader = styled(Box)`
   padding: 50px 0 50px;
   background: #4f4f4f;
   color: #fff;
+
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
 `;
 
 export const ContainerHeader = styled(Container)`

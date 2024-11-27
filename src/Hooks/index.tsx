@@ -150,7 +150,7 @@ export const workoutWeek = (trainingData: TypeTraining[]): string => {
     ) {
       categories.add("Pernas");
     }
-    if (training.rest === "Dia de Descanço") {
+    if (training.rest === "Descansar") {
       categories.add("Dia de Descanço");
     }
   }
