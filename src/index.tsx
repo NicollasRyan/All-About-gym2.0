@@ -43,7 +43,7 @@ const Main = () => {
 
 
   if (loading) {
-    return <div>Loading...</div>; // Exibe uma mensagem de carregamento enquanto verifica o estado de autenticação
+    return <div>Loading...</div>;
   }
 
   const router = createBrowserRouter(

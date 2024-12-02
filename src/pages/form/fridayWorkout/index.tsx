@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Alert, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
   doc,
@@ -38,6 +38,7 @@ import { ButtonOpenModals } from "../components/ButtonOpenModals";
 export function FridayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
   const [addTraining, setAddTraining] = useState(false);
+  const [success, setSuccess] = useState("");
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -72,7 +73,7 @@ export function FridayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-  }, [trainingId]);
+  }, [trainingId, training]);
 
   const fetchTrainingDocuments = async () => {
     const user = auth.currentUser;
@@ -88,8 +89,6 @@ export function FridayWorkout() {
       if (docSnap.exists()) {
         const trainingData = { id: docSnap.id, ...docSnap.data() };
         setTraining([trainingData]);
-      } else {
-        console.log("Nenhum documento encontrado.");
       }
     } catch (error) {
       console.error("Erro ao obter documento:", error);
@@ -109,6 +108,10 @@ export function FridayWorkout() {
         [field]: deleteField(),
       });
       fetchTrainingDocuments();
+      setSuccess("Treino deletado com successo!");
+      setTimeout(() => {
+        setSuccess("");
+      }, 5000)
     } catch (error) {
       console.error("Erro ao deletar campo:", error);
     }
@@ -133,9 +136,16 @@ export function FridayWorkout() {
       if (docSnap.exists()) {
         await updateDoc(docRef, cleanedUserForm);
         fetchTrainingDocuments();
+        setSuccess("Novo treino criado com successo!");
+        setTimeout(() => {
+          setSuccess("");
+        }, 5000);
       } else {
         await setDoc(docRef, cleanedUserForm);
-        console.log("Novo treino criado com sucesso!");
+        setSuccess("Novo treino criado com successo!");
+        setTimeout(() => {
+          setSuccess("");
+        }, 5000);
       }
     } catch (error) {
       console.error("Erro ao salvar dados:", error);
@@ -153,10 +163,8 @@ export function FridayWorkout() {
 
     try {
       await deleteDoc(docRef);
-      console.log("Documento de quarta-feira apagado");
-
       await setDoc(docRef, data);
-      console.log("Descanso adicionado com sucesso");
+      setSuccess("Descanso adicionado com successo!")
 
     } catch (error) {
       console.error("Erro ao adicionar descanso:", error);
@@ -174,6 +182,7 @@ export function FridayWorkout() {
   return (
     <Container>
       <TitleWorkout>Treino de Sexta-feira</TitleWorkout>
+      {success && <Alert severity="success">{success}</Alert>}
       {training.map((workout) => (
         <BoxCard key={workout.id}>
           <RestWork workout={workout} handleDelete={handleDelete} />
@@ -185,6 +194,7 @@ export function FridayWorkout() {
           <LegWork workout={workout} handleDelete={handleDelete} />
         </BoxCard>
       ))}
+
 
       {!training.some((trainingItem) => trainingItem.rest) && (
         <ButtonMore onClick={handleMore}>

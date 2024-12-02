@@ -7,7 +7,9 @@ export const TitleWorkout = styled(Typography)`
   font-weight: bold;
 `;
 
-export const BoxCard = styled(Box)``;
+export const BoxCard = styled(Box)`
+  margin-top: 30px;
+`;
 
 export const ButtonAdd = styled(Button)`
   padding: 30px;
