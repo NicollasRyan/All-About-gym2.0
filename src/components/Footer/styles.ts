@@ -2,17 +2,16 @@ import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 
 export const BoxFooter = styled(Box)`
-  position: relative;
-  margin-top: 30px;
+  margin-top: 40px;
   padding: 120px 0 120px;
   background: #4f4f4f;
   color: #fff;
   bottom: 0;
-  margin-top: auto;
 
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   @media (max-width: 600px) {
     padding: 50px 0 50px; 
+    margin-top: 130px;
   }
 `;
 

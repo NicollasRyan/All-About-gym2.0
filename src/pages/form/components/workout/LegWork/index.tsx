@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Delete } from "@mui/icons-material";
+import { Delete, Visibility } from "@mui/icons-material";
 import { VideoModal } from "../../VideoModal";
 import {
   CardTraining,
@@ -25,329 +25,328 @@ export function LegWork({ workout, handleDelete }: any) {
     <>
       {workout.ExtensionChair && (
         <CardTraining>
+          <Text>{workout.ExtensionChair}</Text>
           <BoxText>
-            <Text>{workout.ExtensionChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("el3oHblB5DM");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.ExtensionChair) {
+                  handleDelete("ExtensionChair", workout.ExtensionChair);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.ExtensionChair) {
-                handleDelete("ExtensionChair", workout.ExtensionChair);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.FlexorChair && (
         <CardTraining>
+          <Text>{workout.FlexorChair}</Text>
           <BoxText>
-            <Text>{workout.FlexorChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("Zss6E3VU6X0");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.FlexorChair) {
+                  handleDelete("FlexorChair", workout.FlexorChair);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.FlexorChair) {
-                handleDelete("FlexorChair", workout.FlexorChair);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.FlexingTable && (
         <CardTraining>
+          <Text>{workout.FlexingTable}</Text>
           <BoxText>
-            <Text>{workout.FlexingTable}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("ULaRrQa7c");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.FlexingTable) {
+                  handleDelete("FlexingTable", workout.FlexingTable);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.FlexingTable) {
-                handleDelete("FlexingTable", workout.FlexingTable);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.LegPress && (
         <CardTraining>
+          <Text>{workout.LegPress}</Text>
           <BoxText>
-            <Text>{workout.LegPress}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("nY8UsiAqwds");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.LegPress) {
+                  handleDelete("LegPress", workout.LegPress);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.LegPress) {
-                handleDelete("LegPress", workout.LegPress);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.AbductorChair && (
         <CardTraining>
+          <Text>{workout.AbductorChair}</Text>
           <BoxText>
-            <Text>{workout.AbductorChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("Wf602gn_9zU");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.AbductorChair) {
+                  handleDelete("AbductorChair", workout.AbductorChair);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.AbductorChair) {
-                handleDelete("AbductorChair", workout.AbductorChair);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.AdductorChair && (
         <CardTraining>
+          <Text>{workout.AdductorChair}</Text>
           <BoxText>
-            <Text>{workout.AdductorChair}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("e2gmqTG1OgQ");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.AdductorChair) {
+                  handleDelete("AdductorChair", workout.AdductorChair);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.AdductorChair) {
-                handleDelete("AdductorChair", workout.AdductorChair);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.Bugaro && (
         <CardTraining>
+          <Text>{workout.Bugaro}</Text>
           <BoxText>
-            <Text>{workout.Bugaro}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("IGf9fR4Y7Iw");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.Bugaro) {
+                  handleDelete("Bugaro", workout.Bugaro);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.Bugaro) {
-                handleDelete("Bugaro", workout.Bugaro);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.Squat && (
         <CardTraining>
+          <Text>{workout.Squat}</Text>
           <BoxText>
-            <Text>{workout.Squat}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("zgk71dUUt0Y");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.Squat) {
+                  handleDelete("Squat", workout.Squat);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.Squat) {
-                handleDelete("Squat", workout.Squat);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.Hack && (
         <CardTraining>
+          <Text>{workout.Hack}</Text>
           <BoxText>
-            <Text>{workout.Hack}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("Whp712OHPl8");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.Hack) {
+                  handleDelete("Hack", workout.Hack);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.Hack) {
-                handleDelete("Hack", workout.Hack);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.Stiff && (
         <CardTraining>
+          <Text>{workout.Stiff}</Text>
           <BoxText>
-            <Text>{workout.Stiff}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("u1E3_u2gJYE");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.Stiff) {
+                  handleDelete("Stiff", workout.Stiff);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.Stiff) {
-                handleDelete("Stiff", workout.Stiff);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.Earth && (
         <CardTraining>
+          <Text>{workout.Earth}</Text>
           <BoxText>
-            <Text>{workout.Earth}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("50AkPBZwACQ");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.Earth) {
+                  handleDelete("Earth", workout.Earth);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.Earth) {
-                handleDelete("Earth", workout.Earth);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.Lunge && (
         <CardTraining>
+          <Text>{workout.Lunge}</Text>
           <BoxText>
-            <Text>{workout.Lunge}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("LD6dydg2bxc");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.Lunge) {
+                  handleDelete("Lunge", workout.Lunge);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.Lunge) {
-                handleDelete("Lunge", workout.Lunge);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
 
       {workout.PelvicLift && (
         <CardTraining>
+          <Text>{workout.PelvicLift}</Text>
           <BoxText>
-            <Text>{workout.PelvicLift}</Text>
             <ButtonSee
               onClick={() => {
                 handleOpen();
                 setIdLink("ptK0azwOXwM");
               }}
             >
-              Ver execução
+              <Visibility />
             </ButtonSee>
+            <ButtonDelete
+              onClick={() => {
+                if (workout.PelvicLift) {
+                  handleDelete("PelvicLift", workout.PelvicLift);
+                }
+              }}
+            >
+              <Delete />
+            </ButtonDelete>
           </BoxText>
-          <ButtonDelete
-            onClick={() => {
-              if (workout.PelvicLift) {
-                handleDelete("PelvicLift", workout.PelvicLift);
-              }
-            }}
-          >
-            <Delete />
-          </ButtonDelete>
         </CardTraining>
       )}
-
       <VideoModal open={open} onClose={handleClose} idLink={idLink} />
     </>
   );

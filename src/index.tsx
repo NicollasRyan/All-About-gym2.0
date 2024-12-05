@@ -30,21 +30,13 @@ import { ResistanceTraining } from "./pages/KnowMore/ResistanceTraining";
 
 const Main = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsAuthenticated(!!user);
-      setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
-
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   const router = createBrowserRouter(
     createRoutesFromElements(

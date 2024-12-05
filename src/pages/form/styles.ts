@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import {Box, Button, Typography} from '@mui/material';
 
 export const TitleWorkout = styled(Typography)`
-  padding: 25px 0;
   font-size: 35px;
   font-weight: bold;
 `;
@@ -30,25 +29,9 @@ export const ButtonAdd = styled(Button)`
   }
 `;
 
-export const TextMotivational = styled(Typography)`
-  padding: 25px 70px;
-  font-size: 45px;
-  font-weight: bold;
-  font-family: 'Permanent Marker', cursive;
-
-  margin: 93px 0 93px;
-  border: 1px #000 solid;
-  border-radius: 50px;
-
-  background-color: #bcbcbc;
-  color: #000;
-`;
-
 export const ButtonMore = styled(Button)`
   padding: 15px;
   background: #f40093;
-
-  margin-bottom: 25px;
 
   color: #fff;
   font-weight: 700;

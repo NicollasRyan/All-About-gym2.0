@@ -34,12 +34,13 @@ import { RestWork } from "../components/workout/RestWork";
 import { ShoulderWork } from "../components/workout/ShouderWork/inde";
 import { TricepsWork } from "../components/workout/TricepsWork";
 import { ButtonOpenModals } from "../components/ButtonOpenModals";
+import { Loading } from "../../../components/Loading";
 
 export function SaturdayWorkout() {
   const [training, setTraining] = useState<TypeTraining[]>([]);
   const [addTraining, setAddTraining] = useState(false);
   const [success, setSuccess] = useState("");
-
+  const [loading, setLoading] = useState(true);
 
   const [openShoulder, setOpenShoulder] = useState(false);
   const [openChest, setOpenChest] = useState(false);
@@ -74,7 +75,8 @@ export function SaturdayWorkout() {
 
   useEffect(() => {
     fetchTrainingDocuments();
-  }, [trainingId]);
+    setLoading(false)
+  }, [trainingId, training]);
 
   const fetchTrainingDocuments = async () => {
     const user = auth.currentUser;
@@ -187,19 +189,23 @@ export function SaturdayWorkout() {
     <Container>
       <TitleWorkout>Treino de Sabado</TitleWorkout>
       {success && <Alert severity="success">{success}</Alert>}
-      {training.map((workout) => (
-        <BoxCard key={workout.id}>
-          <RestWork workout={workout} handleDelete={handleDelete} />
-          <ShoulderWork workout={workout} handleDelete={handleDelete} />
-          <BackWork workout={workout} handleDelete={handleDelete} />
-          <ChestWork workout={workout} handleDelete={handleDelete} />
-          <BicepsWork workout={workout} handleDelete={handleDelete} />
-          <TricepsWork workout={workout} handleDelete={handleDelete} />
-          <LegWork workout={workout} handleDelete={handleDelete} />
-        </BoxCard>
-      ))}
+      {loading ? (
+        <Loading />
+      ) : (
+        training.map((workout) => (
+          <BoxCard key={workout.id}>
+            <RestWork workout={workout} handleDelete={handleDelete} />
+            <ShoulderWork workout={workout} handleDelete={handleDelete} />
+            <BackWork workout={workout} handleDelete={handleDelete} />
+            <ChestWork workout={workout} handleDelete={handleDelete} />
+            <BicepsWork workout={workout} handleDelete={handleDelete} />
+            <TricepsWork workout={workout} handleDelete={handleDelete} />
+            <LegWork workout={workout} handleDelete={handleDelete} />
+          </BoxCard>
+        ))
+      )}
       {!training.some((trainingItem) => trainingItem.rest) && (
-        <ButtonMore onClick={handleMore}>
+        <ButtonMore onClick={handleMore} sx={{ marginTop: loading ? "0px" : "70px" }}>
           {addTraining ? "Cancelar" : "Adiconar exercios"}
         </ButtonMore>
       )}

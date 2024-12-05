@@ -25,8 +25,7 @@ export const CardRest = styled(Box)`
 
   background: #313234;
 
-  padding: 50px;
-
+  padding: 50px;  
   @media (max-width: 600px) {
     margin-bottom: 20px;
   }
@@ -61,17 +60,28 @@ export const BoxText = styled(Box)`
   display: flex;
   align-items: center;
 
+  justify-content: center;
+
   @media (max-width: 600px) {
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 `;
 
 export const ButtonSee = styled(Button)`
-  margin-left: 45px;
+  padding: 15px;
+  margin: 0 30px 0;
+  border: 1px solid #055bff;
+  font-weight: 700;
+  color: #1969ff;
+
+  :hover {
+    background: #055bff;
+    color: #fff;
+  }
 
   @media (max-width: 600px) {
-    margin-left: 0;
+    margin: 0 0 20px;
+    padding: 5px;
   }
 `;
